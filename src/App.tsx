@@ -1,5 +1,14 @@
+import { BrowserRouter } from "react-router-dom";
+import { Header } from "./components";
+import Home from "./views/Home";
+
 function App() {
-  return <>REALIZADOR DE SORTEIOS</>;
+  return (
+    <BrowserRouter>
+      <Header />
+      <Home />
+    </BrowserRouter>
+  );
 }
 
 export default App;
