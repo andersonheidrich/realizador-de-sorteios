@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import { Header } from "./components";
+import { Footer, Header } from "./components";
 import Home from "./views/Home";
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Home />
+      <Footer />
     </BrowserRouter>
   );
 }
