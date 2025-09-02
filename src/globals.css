@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap");
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+@import "tailwindcss";
+
+* {
+  scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  color: #131a2a;
+  background-color: #ffffff;
+  font-family: "Inter", sans-serif;
+}
+
+button {
+  background-color: none;
+  border: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: unset;
+  display: flex;
+}
+
+a:visited {
+  color: inherit;
+}
+
+/* *::selection {} */
+
+ul,
+ol {
+  list-style: none;
+}
