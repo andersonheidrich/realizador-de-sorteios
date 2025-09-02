@@ -17,16 +17,16 @@ const Header = () => {
         "border-b-gray-400 hover:bg-gray-400 hover:text-white transition-colors duration-300",
     },
     {
-      label: "Sorteio",
-      path: "/sorteio",
+      label: "Sorteios",
+      path: "/sorteios",
       icon: <SportsTennisIcon />,
       activeClasses: "bg-red-600 text-white border-b-red-600",
       baseClasses:
         "border-b-red-600 hover:bg-red-600 hover:text-white transition-colors duration-300",
     },
     {
-      label: "Torneio",
-      path: "/torneio",
+      label: "Torneios",
+      path: "/torneios",
       icon: <EmojiEventsIcon />,
       activeClasses: "bg-yellow-500 text-white border-b-yellow-500",
       baseClasses:
