@@ -1,18 +1,13 @@
 import type { Match, Pair, Player, Round } from "../types/types";
-
-declare function shuffleArray<T>(array: T[]): T[];
-declare function alreadyPlayedTogether(
-  history: Pair[],
-  player1: Player,
-  player2: Player
-): boolean;
+import { shuffleArray } from "./shuffleArray";
+import { pairKey, alreadyPlayedTogether } from "./pairs";
 
 export const generateAmericanFormatRounds = (
   players: Player[],
   numRounds: number
 ): Round[] => {
   const rounds: Round[] = [];
-  const partnerHistory: Pair[] = [];
+  const partnerHistory = new Set<string>();
 
   for (let r = 0; r < numRounds; r++) {
     let attempts = 0;
@@ -45,8 +40,8 @@ export const generateAmericanFormatRounds = (
           !alreadyPlayedTogether(partnerHistory, pair2[0], pair2[1])
         ) {
           chosen = { double1: pair1, double2: pair2 };
-          partnerHistory.push(pair1);
-          partnerHistory.push(pair2);
+          partnerHistory.add(pairKey(pair1[0], pair1[1]));
+          partnerHistory.add(pairKey(pair2[0], pair2[1]));
           break;
         }
       }
