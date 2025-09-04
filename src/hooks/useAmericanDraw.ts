@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { groupPlayers } from "../utils/groupPlayers";
 import { generateAmericanFormatRounds } from "../utils/generateAmericanFormatRounds";
-import type { Player, Round } from "../types/types";
+import type { Player, Group, Round, NavigationState } from "../types/types";
 
 export function useAmericanDraw() {
   const [playerListText, setPlayerListText] = useState<string>("");
@@ -12,7 +12,7 @@ export function useAmericanDraw() {
 
   const navigate = useNavigate();
 
-  const addPlayerList = (): void => {
+  const addPlayerList = () => {
     const rawList = playerListText.split(/\r?\n|,/);
     const cleanedList = rawList
       .map((name) => name.replace(/^\s*\d+\s*[-.:]?\s*/g, "").trim())
@@ -22,11 +22,11 @@ export function useAmericanDraw() {
     setPlayerListText("");
   };
 
-  const removePlayer = (nameToRemove: Player): void => {
+  const removePlayer = (nameToRemove: Player) => {
     setPlayers((prev) => prev.filter((name) => name !== nameToRemove));
   };
 
-  const handleDraw = (): void => {
+  const handleDraw = () => {
     const totalPlayers = players.length;
 
     if (totalPlayers === 0) {
@@ -48,7 +48,7 @@ export function useAmericanDraw() {
       return;
     }
 
-    const grouped = groupPlayers(players, numGroups);
+    const grouped: Group[] = groupPlayers(players, numGroups);
 
     const isValid = grouped.every((group) => group.length === 4);
     if (!isValid) {
@@ -64,9 +64,12 @@ export function useAmericanDraw() {
 
     setRoundsResult(roundsByGroup);
 
-    navigate("/sorteio/americano/grupos", {
-      state: { rounds: roundsByGroup, players: grouped },
-    });
+    const navState: NavigationState = {
+      rounds: roundsByGroup,
+      players: grouped,
+    };
+
+    navigate("/sorteios/americano/grupos", { state: navState });
   };
 
   return {
