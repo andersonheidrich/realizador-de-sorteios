@@ -1,4 +1,4 @@
-import type { Match, Pair, Player, Round } from "../types/types";
+import type { Match, Pair, Player, Round } from "@/types/types";
 import { shuffleArray } from "./shuffleArray";
 import { pairKey, alreadyPlayedTogether } from "./pairs";
 

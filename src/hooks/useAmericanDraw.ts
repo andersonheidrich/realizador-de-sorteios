@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { groupPlayers } from "../utils/groupPlayers";
+import { groupPlayers } from "@/utils/groupPlayers";
 import { generateAmericanFormatRounds } from "../utils/generateAmericanFormatRounds";
-import type { Player, Group, Round, NavigationState } from "../types/types";
+import type { Player, Group, Round, NavigationState } from "@/types/types";
 
 export function useAmericanDraw() {
   const [playerListText, setPlayerListText] = useState<string>("");

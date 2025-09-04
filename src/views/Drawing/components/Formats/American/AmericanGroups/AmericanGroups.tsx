@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import type { Location } from "react-router-dom";
-import type { NavigationState } from "../../../../../../types/types";
+import type { NavigationState } from "@/types/types";
+
 // import { generatePDF, generateXLSX } from "../../utils";
 // import FileDownloadIcon from "@mui/icons-material/FileDownload";
 

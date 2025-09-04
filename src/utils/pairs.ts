@@ -1,4 +1,4 @@
-import type { Player } from "../types/types";
+import type { Player } from "@/types/types";
 
 export const pairKey = (p1: Player, p2: Player): string =>
   [p1, p2].sort().join("||");

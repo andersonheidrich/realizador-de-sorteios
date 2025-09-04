@@ -1,5 +1,5 @@
-import Button from "../../../../../components/Button";
-import { useAmericanDraw } from "../../../../../hooks/useAmericanDraw";
+import { Button } from "@/components";
+import { useAmericanDraw } from "@/hooks/useAmericanDraw";
 import { RemoveCircle } from "@mui/icons-material";
 
 const AmericanDraw = () => {
