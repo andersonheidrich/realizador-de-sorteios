@@ -1,19 +1,21 @@
 import { useLocation } from "react-router-dom";
 import type { Location } from "react-router-dom";
-import type { NavigationState } from "@/types/types";
+import type { NavigationState, Player, Round } from "@/types/types";
 
 // import { generatePDF, generateXLSX } from "../../utils";
 // import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 const AmericanGroups = () => {
-  const location = useLocation() as Location<NavigationState>;
+  const location = useLocation() as Location & {
+    state: NavigationState<Player>;
+  };
   const { rounds } = location.state;
 
   return (
     <div className="flex flex-col min-h-screen items-center pt-[90px]">
       <div className="mt-8 text-[32px] font-bold">Formato Americano</div>
       <div className="grid grid-cols-2 w-full p-8 gap-8 capitalize">
-        {rounds.map((groupRounds, groupIdx) => (
+        {rounds.map((groupRounds: Round<Player>[], groupIdx: number) => (
           <div
             key={groupIdx}
             className="flex flex-col w-full border border-gray-300 rounded-xl p-4 shadow"
