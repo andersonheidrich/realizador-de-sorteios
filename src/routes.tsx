@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Drawing } from "./views";
+import { Home, Drawing, Tournament } from "./views";
 import { Footer, Header } from "./components";
-import { American } from "./views/Drawing/components/Formats";
+import { American, Doubles } from "./views/Drawing/components/Formats";
 import { AmericanGroups } from "./views/Drawing/components/Formats/American";
 
 const AppRoutes = () => {
@@ -10,10 +10,16 @@ const AppRoutes = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+
+        {/* Sorteios */}
         <Route path="/sorteios" element={<Drawing />} />
         <Route path="/sorteios/americano" element={<American />} />
         <Route path="/sorteios/americano/grupos" element={<AmericanGroups />} />
-        {/* <Route path="/torneios" element={} /> */}
+        <Route path="/sorteios/duplas" element={<Doubles />} />
+        {/* <Route path="/sorteios/duplas/grupos" element={<DoublesGroups />} /> */}
+
+        {/* Torneios */}
+        <Route path="/torneios" element={<Tournament />} />
       </Routes>
       <Footer />
     </>

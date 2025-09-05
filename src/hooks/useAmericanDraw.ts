@@ -8,7 +8,7 @@ export function useAmericanDraw() {
   const [playerListText, setPlayerListText] = useState<string>("");
   const [players, setPlayers] = useState<Player[]>([]);
   const [numGroups, setNumGroups] = useState<number>(1);
-  const [roundsResult, setRoundsResult] = useState<Round[][]>([]);
+  const [roundsResult, setRoundsResult] = useState<Round<Player>[][]>([]);
 
   const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ export function useAmericanDraw() {
       return;
     }
 
-    const grouped: Group[] = groupPlayers(players, numGroups);
+    const grouped: Group<Player>[] = groupPlayers<Player>(players, numGroups);
 
     const isValid = grouped.every((group) => group.length === 4);
     if (!isValid) {
@@ -58,13 +58,13 @@ export function useAmericanDraw() {
       return;
     }
 
-    const roundsByGroup: Round[][] = grouped.map((group) =>
+    const roundsByGroup: Round<Player>[][] = grouped.map((group) =>
       generateAmericanFormatRounds(group, 3)
     );
 
     setRoundsResult(roundsByGroup);
 
-    const navState: NavigationState = {
+    const navState: NavigationState<Player> = {
       rounds: roundsByGroup,
       players: grouped,
     };

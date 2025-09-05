@@ -1,11 +1,9 @@
-import type { Group, Player } from "@/types/types";
+export const groupPlayers = <T>(items: T[], numGroups: number): T[][] => {
+  const shuffled = [...items].sort(() => 0.5 - Math.random());
+  const groups: T[][] = Array.from({ length: numGroups }, () => []);
 
-export const groupPlayers = (players: Player[], numGroups: number): Group[] => {
-  const shuffled = [...players].sort(() => 0.5 - Math.random());
-  const groups: Group[] = Array.from({ length: numGroups }, () => []);
-
-  shuffled.forEach((player, index) => {
-    groups[index % numGroups].push(player);
+  shuffled.forEach((item, index) => {
+    groups[index % numGroups].push(item);
   });
 
   return groups;
