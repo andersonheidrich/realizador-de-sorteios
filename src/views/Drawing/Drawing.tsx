@@ -1,4 +1,4 @@
-import { AmericanCard, DoublesCard } from "./components/FormatCard";
+import { AmericanCard, DoublesCard, SingleCard } from "./components/FormatCard";
 
 const Drawing = () => {
   return (
@@ -9,6 +9,7 @@ const Drawing = () => {
       <div className="flex w-full justify-center items-center gap-8 px-4">
         <AmericanCard />
         <DoublesCard />
+        <SingleCard />
       </div>
     </div>
   );
