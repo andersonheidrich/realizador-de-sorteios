@@ -116,8 +116,8 @@ export function useDoublesDraw() {
       const matches: Match<Pair>[] = [];
       for (let i = 0; i < group.length; i++) {
         for (let j = i + 1; j < group.length; j++) {
-          const double1: Pair = group[i].split(" e ").map(cleanName) as Pair;
-          const double2: Pair = group[j].split(" e ").map(cleanName) as Pair;
+          const double1: Pair = group[i].split(" / ").map(cleanName) as Pair;
+          const double2: Pair = group[j].split(" / ").map(cleanName) as Pair;
           matches.push({ double1: [double1], double2: [double2] });
         }
       }
@@ -125,7 +125,7 @@ export function useDoublesDraw() {
     });
 
     setGroups(groups);
-    navigate("/sorteio/duplas/grupos", {
+    navigate("/sorteios/duplas/grupos", {
       state: { rounds, players: groups },
     });
   };

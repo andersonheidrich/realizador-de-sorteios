@@ -9,6 +9,7 @@ const DoublesDraw = () => {
     players,
     parseInput,
     removeEntry,
+    sortGroups,
   } = useDoublesDraw();
 
   return (
@@ -67,7 +68,7 @@ const DoublesDraw = () => {
             </div> */}
             <Button
               className="flex w-32 shadow bg-purple-500"
-              onClick={parseInput}
+              onClick={sortGroups}
             >
               Sortear
             </Button>
