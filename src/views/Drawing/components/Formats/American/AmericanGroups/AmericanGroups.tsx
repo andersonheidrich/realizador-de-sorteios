@@ -13,7 +13,8 @@ const AmericanGroups = () => {
 
   return (
     <div className="flex flex-col min-h-screen items-center pt-[90px]">
-      <div className="mt-8 text-[32px] font-bold">Formato Americano</div>
+      <div className="mt-8 text-[32px] font-bold">Americano</div>
+      <div className="text-[24px] font-bold">Rodadas e Confrontos</div>
       <div className="grid grid-cols-2 w-full p-8 gap-8 capitalize">
         {rounds.map((groupRounds: Round<Player>[], groupIdx: number) => (
           <div
@@ -26,11 +27,11 @@ const AmericanGroups = () => {
             <div className="flex w-full gap-8">
               <div className="flex flex-col w-full">
                 {groupRounds.map((round, idx) => (
-                  <div className="rounds mb-4" key={idx}>
+                  <div className="mb-4" key={idx}>
                     <div className="font-semibold mb-1">Rodada {idx + 1}:</div>
                     <div className="flex flex-col">
                       {round.map((match, qIdx) => (
-                        <div className="" key={qIdx}>
+                        <div className="flex flex-col" key={qIdx}>
                           <p className="">
                             {match.double1.join(" / ")} vs{" "}
                             {match.double2.join(" / ")}
