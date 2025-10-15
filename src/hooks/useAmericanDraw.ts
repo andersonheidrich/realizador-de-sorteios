@@ -7,8 +7,8 @@ import type { Player, Group, Round, NavigationState } from "@/types/types";
 export function useAmericanDraw() {
   const [playerListText, setPlayerListText] = useState<string>("");
   const [players, setPlayers] = useState<Player[]>([]);
-  const [numGroups, setNumGroups] = useState<number>(1);
-  const [roundsResult, setRoundsResult] = useState<Round<Player>[][]>([]);
+  const [groups, setGroups] = useState<number>(1);
+  const [rounds, setRounds] = useState<Round<Player>[][]>([]);
 
   const navigate = useNavigate();
 
@@ -41,14 +41,14 @@ export function useAmericanDraw() {
 
     const expectedGroups = totalPlayers / 4;
 
-    if (numGroups !== expectedGroups) {
+    if (groups !== expectedGroups) {
       alert(
         `Você deve formar exatamente ${expectedGroups} grupo(s) para ${totalPlayers} jogadores.`
       );
       return;
     }
 
-    const grouped: Group<Player>[] = groupPlayers<Player>(players, numGroups);
+    const grouped: Group<Player>[] = groupPlayers<Player>(players, groups);
 
     const isValid = grouped.every((group) => group.length === 4);
     if (!isValid) {
@@ -62,7 +62,7 @@ export function useAmericanDraw() {
       generateAmericanFormatRounds(group, 3)
     );
 
-    setRoundsResult(roundsByGroup);
+    setRounds(roundsByGroup);
 
     const navState: NavigationState<Player> = {
       rounds: roundsByGroup,
@@ -77,9 +77,9 @@ export function useAmericanDraw() {
     setPlayerListText,
     players,
     setPlayers,
-    numGroups,
-    setNumGroups,
-    roundsResult,
+    groups,
+    setGroups,
+    rounds,
     addPlayerList,
     removePlayer,
     handleDraw,
