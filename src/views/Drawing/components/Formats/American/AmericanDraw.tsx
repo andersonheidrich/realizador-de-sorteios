@@ -7,8 +7,8 @@ const AmericanDraw = () => {
     playerListText,
     setPlayerListText,
     players,
-    numGroups,
-    setNumGroups,
+    groups,
+    setGroups,
     addPlayerList,
     removePlayer,
     handleDraw,
@@ -16,7 +16,7 @@ const AmericanDraw = () => {
 
   return (
     <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
-      <div className="my-8 text-[32px] font-bold">Formato de Duplas</div>
+      <div className="my-8 text-[32px] font-bold">Americano</div>
       <div className="flex w-full justify-center items-center gap-8 px-4">
         <div className="flex flex-col w-140 h-140 items-start">
           <div className="text-2xl font-bold mb-2">Adicionar Jogadores</div>
@@ -60,8 +60,8 @@ const AmericanDraw = () => {
               <input
                 className="flex w-full justify-center items-center border-2 rounded-sm pl-1"
                 type="number"
-                value={numGroups}
-                onChange={(e) => setNumGroups(Number(e.target.value))}
+                value={groups}
+                onChange={(e) => setGroups(Number(e.target.value))}
                 min={1}
                 max={Math.floor(players.length / 4)}
               />
