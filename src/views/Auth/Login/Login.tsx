@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { Input } from "@/components";
+import { useUser } from "@/context/useUser";
+import type { UserLogin } from "@/types/types";
 
 const Login = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<UserLogin>({ email: "", password: "" });
+  const { login } = useUser();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // login(user);
+    login(user);
   };
   return (
     <section>
