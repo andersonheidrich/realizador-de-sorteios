@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Input } from "@/components";
-
 import { useUser } from "@/context/useUser";
 
 const Register = () => {

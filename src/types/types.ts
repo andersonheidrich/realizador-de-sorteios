@@ -25,11 +25,16 @@ export interface NavigationState<T> {
   players: Group<T>[];
 }
 
-export interface User {
+export interface UserRegister {
   name: string;
   email: string;
   password: string;
   confirm_password: string;
+}
+
+export interface UserLogin {
+  email: string;
+  password: string;
 }
 
 export interface AuthResponse {
@@ -39,7 +44,7 @@ export interface AuthResponse {
 
 export interface UserContextType {
   authenticated: boolean;
-  userRegister: (user: User) => Promise<void>;
-  login: (user: User) => Promise<void>;
+  userRegister: (user: UserRegister) => Promise<void>;
+  login: (user: UserLogin) => Promise<void>;
   logout: () => void;
 }

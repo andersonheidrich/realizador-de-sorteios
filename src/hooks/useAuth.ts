@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "@/services/api";
 import { AxiosError } from "axios";
-import type { AuthResponse, User } from "@/types/types";
+import type { AuthResponse, UserRegister } from "@/types/types";
 
 export const useAuth = () => {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -23,7 +23,7 @@ export const useAuth = () => {
     navigate("/");
   };
 
-  const userRegister = async (user: User): Promise<void> => {
+  const userRegister = async (user: UserRegister): Promise<void> => {
     try {
       const { data } = await api.post<AuthResponse>("/users/register", user);
       await authUser(data);
@@ -36,7 +36,7 @@ export const useAuth = () => {
   };
 
   const login = async (
-    user: Pick<User, "email" | "password">
+    user: Pick<UserRegister, "email" | "password">
   ): Promise<void> => {
     try {
       const { data } = await api.post<AuthResponse>("/users/login", user);
