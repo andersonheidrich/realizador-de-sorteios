@@ -4,6 +4,7 @@ import { Footer, Header } from "./components";
 import { American, Doubles, Single } from "./views/Drawing/components/Formats";
 import { AmericanGroups } from "./views/Drawing/components/Formats/American";
 import { DoublesGroups } from "./views/Drawing/components/Formats/Doubles";
+import { Login, Register } from "./views/Auth";
 
 const AppRoutes = () => {
   return (
@@ -11,6 +12,9 @@ const AppRoutes = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* Auth */}
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         {/* Sorteios */}
         <Route path="/sorteios" element={<Drawing />} />
         <Route path="/sorteios/americano" element={<American />} />

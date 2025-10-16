@@ -2,6 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import SportsTennisIcon from "@mui/icons-material/SportsTennis";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import LoginIcon from "@mui/icons-material/Login";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -32,11 +34,27 @@ const Header = () => {
       baseClasses:
         "border-b-yellow-500 hover:bg-yellow-500 hover:text-white transition-colors duration-300",
     },
+    {
+      label: "Entrar",
+      path: "/login",
+      icon: <LoginIcon />,
+      activeClasses: "bg-green-600 text-white border-b-green-600",
+      baseClasses:
+        "border-b-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300",
+    },
+    {
+      label: "Cadastrar",
+      path: "/register",
+      icon: <PersonAddIcon />,
+      activeClasses: "bg-blue-600 text-white border-b-blue-600",
+      baseClasses:
+        "border-b-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300",
+    },
   ];
 
   return (
     <header className="flex w-screen h-[90px] justify-center items-center fixed z-[1000] bg-white border-b-[4px] border-b-gray-300 font-bold gap-2">
-      <nav className="flex w-[320px] h-[94px]">
+      <nav className="flex w-[536px] h-[94px]">
         {menuItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (

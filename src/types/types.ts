@@ -24,3 +24,22 @@ export interface NavigationState<T> {
   rounds: RoundsResult<T>;
   players: Group<T>[];
 }
+
+export interface User {
+  name: string;
+  email: string;
+  password: string;
+  confirm_password: string;
+}
+
+export interface AuthResponse {
+  token: string;
+  message?: string;
+}
+
+export interface UserContextType {
+  authenticated: boolean;
+  userRegister: (user: User) => Promise<void>;
+  login: (user: User) => Promise<void>;
+  logout: () => void;
+}
