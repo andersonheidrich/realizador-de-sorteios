@@ -24,7 +24,7 @@ const Header = () => {
     },
     {
       label: "Sorteios",
-      path: "/sorteios",
+      path: "/draws",
       icon: <SportsTennisIcon />,
       activeClasses: "bg-red-600 text-white border-b-red-600",
       baseClasses:
@@ -32,7 +32,7 @@ const Header = () => {
     },
     {
       label: "Torneios",
-      path: "/torneios",
+      path: "/tournaments",
       icon: <EmojiEventsIcon />,
       activeClasses: "bg-yellow-500 text-white border-b-yellow-500",
       baseClasses:

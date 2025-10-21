@@ -16,7 +16,7 @@ const Input: React.FC<InputProps> = ({
         {text}:
       </label>
       <input
-        className="p-2 border border-[#777] rounded-sm placeholder-[#7b7b7b]"
+        className="p-2 border border-[#777] rounded-sm placeholder-[#7b7b7b] text-md"
         type={type}
         name={name}
         id={name}

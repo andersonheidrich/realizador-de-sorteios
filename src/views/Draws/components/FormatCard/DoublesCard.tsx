@@ -6,7 +6,7 @@ const DoublesCard = () => {
     <div className="flex flex-col w-140 min-h-175 justify-start items-center p-4 border-2 rounded-2xl">
       <div
         className="flex w-30 justify-center items-center border-2 rounded-2xl p-2 mb-5 cursor-pointer"
-        onClick={() => navigate("/sorteios/duplas")}
+        onClick={() => navigate("/draws/doubles")}
       >
         Duplas
       </div>

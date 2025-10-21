@@ -69,7 +69,7 @@ export function useAmericanDraw() {
       players: grouped,
     };
 
-    navigate("/sorteios/americano/grupos", { state: navState });
+    navigate("/draws/american/groups", { state: navState });
   };
 
   return {

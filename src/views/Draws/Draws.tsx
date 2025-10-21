@@ -1,6 +1,6 @@
 import { AmericanCard, DoublesCard, SingleCard } from "./components/FormatCard";
 
-const Drawing = () => {
+const Draws = () => {
   return (
     <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
       <div className="my-8 text-[32px] font-bold">
@@ -15,4 +15,4 @@ const Drawing = () => {
   );
 };
 
-export default Drawing;
+export default Draws;

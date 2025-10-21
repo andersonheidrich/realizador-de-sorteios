@@ -1,28 +1,27 @@
 import { useNavigate } from "react-router-dom";
 
-const AmericanCard = () => {
+const SingleCard = () => {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col w-140 min-h-175 justify-start items-center p-4 border-2 rounded-2xl">
       <div
         className="flex w-30 justify-center items-center border-2 rounded-2xl p-2 mb-5 cursor-pointer"
-        onClick={() => navigate("/sorteios/americano")}
+        onClick={() => navigate("/draws/single")}
       >
-        Americano
+        Simples
       </div>
       <ul className="list-disc ml-4">
         <li>Cada jogador participa de várias partidas.</li>
         <li className="mt-2">
-          A cada rodada, os parceiros e/ou adversários são trocados de forma que
-          todos joguem com e contra todos os membros do grupo.
+          A cada rodada, o adversário é trocado de forma que todos joguem contra
+          todos os membros do grupo.
         </li>
         <li className="mt-2">
-          Pontuação: A pontuação vai para o jogador individualmente, não para a
-          dupla.
+          Pontuação: A pontuação vai para cada jogador individualmente.
         </li>
         <li className="mt-2">
-          Ex.: se uma dupla vence por 6 a 4, cada jogador da dupla vencedora
-          ganha 6 pontos, e os perdedores ganham 4.
+          Ex.: se um confronto termina com o placar de 6 a 4, o jogador vencedor
+          ganha 6 pontos, e o perdedor ganha 4.
         </li>
         <li className="mt-2">
           Duração fixa ou por número de rodadas: As partidas podem ter tempo
@@ -53,4 +52,4 @@ const AmericanCard = () => {
   );
 };
 
-export default AmericanCard;
+export default SingleCard;
