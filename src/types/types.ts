@@ -37,6 +37,15 @@ export interface UserLogin {
   password: string;
 }
 
+export interface UserEdit {
+  _id?: string;
+  name: string;
+  email: string;
+  image: string | File;
+  password?: string;
+  confirm_password?: string;
+}
+
 export interface AuthResponse {
   token: string;
   message?: string;
@@ -47,4 +56,16 @@ export interface UserContextType {
   userRegister: (user: UserRegister) => Promise<void>;
   login: (user: UserLogin) => Promise<void>;
   logout: () => void;
+}
+
+export interface Draw {
+  _id?: string;
+  name: string;
+  date: string;
+  type: "american" | "doubles" | "singles";
+  players: string[];
+  teams: Pair[];
+  groups: string[][];
+  rounds: Round<Pair>[];
+  userId?: string; // vinculado ao usuário autenticado
 }

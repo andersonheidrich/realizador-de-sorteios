@@ -1,23 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Input } from "@/components";
 import { useUser } from "@/context/useUser";
+import type { UserRegister } from "@/types/types";
+import { useForm } from "@/hooks/useForm";
 
 const Register = () => {
-  const [user, setUser] = useState({
+  const { userRegister } = useUser();
+  const { values: user, handleChange } = useForm<UserRegister>({
     name: "",
     email: "",
     password: "",
     confirm_password: "",
   });
-  const { userRegister } = useUser();
-
-  // Atualiza o estado a cada digitação
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   // Envia os dados do formulário
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -78,7 +72,7 @@ const Register = () => {
           <input
             type="submit"
             value="Cadastrar"
-            className="w-full rounded-lg border-none min-w-[100px] min-h-[2.5rem] shadow text-white bg-blue-700 hover:bg-blue-600 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
+            className="w-full rounded-lg border-none min-w-[100px] min-h-[2.5rem] shadow text-white bg-blue-600 hover:bg-blue-500 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
           />
         </form>
       </div>

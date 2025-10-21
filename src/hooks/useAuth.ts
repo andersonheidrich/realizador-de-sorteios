@@ -12,15 +12,28 @@ export const useAuth = () => {
     const token = localStorage.getItem("token");
 
     if (token) {
-      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+      api.defaults.headers.Authorization = `Bearer ${token}`;
       setAuthenticated(true);
     }
   }, []);
 
   const authUser = async (data: AuthResponse): Promise<void> => {
-    setAuthenticated(true);
-    localStorage.setItem("token", JSON.stringify(data.token));
-    navigate("/");
+    try {
+      if (!data.token) {
+        throw new Error("Token inválido ou ausente");
+      }
+
+      // salva o token puro (sem aspas extras)
+      localStorage.setItem("token", data.token);
+
+      // define o usuário como autenticado
+      setAuthenticated(true);
+
+      // redireciona para a home
+      navigate("/");
+    } catch (error) {
+      console.error("Erro ao autenticar usuário:", error);
+    }
   };
 
   const userRegister = async (user: UserRegister): Promise<void> => {
