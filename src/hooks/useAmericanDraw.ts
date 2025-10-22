@@ -5,6 +5,7 @@ import { generateAmericanFormatRounds } from "../utils/generateAmericanFormatRou
 import type { Player, Group, Round, NavigationState } from "@/types/types";
 
 export function useAmericanDraw() {
+  const [drawName, setDrawName] = useState("");
   const [playerListText, setPlayerListText] = useState<string>("");
   const [players, setPlayers] = useState<Player[]>([]);
   const [groups, setGroups] = useState<number>(1);
@@ -73,6 +74,8 @@ export function useAmericanDraw() {
   };
 
   return {
+    drawName,
+    setDrawName,
     playerListText,
     setPlayerListText,
     players,

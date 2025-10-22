@@ -60,7 +60,7 @@ export interface UserContextType {
 
 export interface Draw {
   _id?: string;
-  name: string;
+  title: string;
   date: string;
   type: "american" | "doubles" | "singles";
   players: string[];
@@ -68,4 +68,9 @@ export interface Draw {
   groups: string[][];
   rounds: Round<Pair>[];
   userId?: string; // vinculado ao usuário autenticado
+}
+
+export interface DrawCreate {
+  title: string;
+  date: string;
 }
