@@ -4,6 +4,7 @@ import api from "@/services/api";
 import type { Pair, Group, Round, Match } from "@/types/types";
 
 export function useDoublesDraw() {
+  const [drawName, setDrawName] = useState("");
   const [playerListText, setPlayerListText] = useState<string>("");
   const [players, setPlayers] = useState<string[]>([]);
   const [groups, setGroups] = useState<Group<string>[]>([]);
@@ -67,6 +68,12 @@ export function useDoublesDraw() {
 
   // === Sortear grupos e salvar no backend ===
   const sortGroups = async (): Promise<void> => {
+    // Validação do nome do sorteio
+    if (!drawName.trim()) {
+      alert("Por favor, digite o nome do sorteio antes de continuar.");
+      return;
+    }
+
     const doubles = generateDoubles();
 
     // validação
@@ -133,7 +140,7 @@ export function useDoublesDraw() {
 
     // monta objeto Draw
     const drawData = {
-      title: `Sorteio - ${new Date().toLocaleDateString()}`,
+      title: drawName,
       date: new Date().toISOString(),
       type: "doubles",
       players,
@@ -157,7 +164,6 @@ export function useDoublesDraw() {
       });
     } catch (error) {
       console.error("Erro ao salvar sorteio:", error);
-      alert("Erro ao salvar o sorteio no servidor.");
     } finally {
       setLoading(false);
       setGroups(groups);
@@ -165,6 +171,8 @@ export function useDoublesDraw() {
   };
 
   return {
+    drawName,
+    setDrawName,
     playerListText,
     setPlayerListText,
     players,

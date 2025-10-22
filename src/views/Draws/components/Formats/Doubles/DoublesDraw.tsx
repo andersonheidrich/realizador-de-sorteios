@@ -1,9 +1,12 @@
-import { Button } from "@/components";
+// import { useState } from "react";
 import { useDoublesDraw } from "@/hooks/useDoublesDraw";
+import { Button, Input } from "@/components";
 import { RemoveCircle } from "@mui/icons-material";
 
 const DoublesDraw = () => {
   const {
+    drawName,
+    setDrawName,
     playerListText,
     setPlayerListText,
     players,
@@ -14,7 +17,15 @@ const DoublesDraw = () => {
 
   return (
     <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
-      <div className="my-8 text-[32px] font-bold">Duplas</div>
+      <div className="mt-8 mb-4 text-[32px] font-bold">Duplas</div>
+      <Input
+        text="Nome do Torneio"
+        type="text"
+        name="title"
+        placeholder="Digite o nome do torneio"
+        value={drawName}
+        handleOnChange={(e) => setDrawName(e.target.value)}
+      />
       <div className="flex w-full justify-center items-center gap-8 px-4">
         <div className="flex flex-col w-140 h-140 items-start">
           <div className="text-2xl font-bold mb-2">
@@ -55,17 +66,6 @@ const DoublesDraw = () => {
             ))}
           </ul>
           <div className="flex w-full justify-between items-center gap-8 p-4">
-            {/* <div className="flex flex-col w-32">
-              <div className="flex w-full">Grupos:</div>
-              <input
-                className="flex w-full justify-center items-center border-2 rounded-sm pl-1"
-                type="number"
-                value={numGroups}
-                onChange={(e) => setNumGroups(Number(e.target.value))}
-                min={1}
-                max={Math.floor(pairs.length / 4)}
-              />
-            </div> */}
             <Button
               className="flex w-32 shadow bg-purple-500"
               onClick={sortGroups}

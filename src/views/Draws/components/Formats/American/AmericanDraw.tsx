@@ -1,9 +1,11 @@
 import { useAmericanDraw } from "@/hooks/useAmericanDraw";
-import { Button } from "@/components";
+import { Button, Input } from "@/components";
 import { RemoveCircle } from "@mui/icons-material";
 
 const AmericanDraw = () => {
   const {
+    drawName,
+    setDrawName,
     playerListText,
     setPlayerListText,
     players,
@@ -17,6 +19,14 @@ const AmericanDraw = () => {
   return (
     <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
       <div className="my-8 text-[32px] font-bold">Americano</div>
+      <Input
+        text="Nome do Torneio"
+        type="text"
+        name="title"
+        placeholder="Digite o nome do torneio"
+        value={drawName}
+        handleOnChange={(e) => setDrawName(e.target.value)}
+      />
       <div className="flex w-full justify-center items-center gap-8 px-4">
         <div className="flex flex-col w-140 h-140 items-start">
           <div className="text-2xl font-bold mb-2">Adicionar Jogadores</div>

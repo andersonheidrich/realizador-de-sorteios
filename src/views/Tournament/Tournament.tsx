@@ -34,13 +34,14 @@ const Tournament = () => {
   return (
     <section>
       <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
-        <div className="my-8 mb-4 text-[32px] font-bold">Meus Torneios</div>
+        <div className="my-8 mb-4 text-[32px] font-bold">Torneios</div>
         {user && (
           <p className="text-gray-600 mb-6">
             {user.name} ({user.email})
           </p>
         )}
         <div className="flex flex-col w-160 max-h-164 justify-start items-center p-4 border-2 rounded-2xl">
+          <h2 className="text-[20px] font-bold mb-4">Meus Torneios</h2>
           <h2 className="text-[20px] font-bold mb-4">Filtro AQUI</h2>
           {userDraws.length === 0 ? (
             <p className="text-center text-gray-500">
@@ -55,8 +56,10 @@ const Tournament = () => {
                   to={`/tournaments/${draw._id}`}
                 >
                   <li className="flex flex-col items-start w-full p-2 gap-1">
-                    <h3 className="w-full break-words">{draw.name}</h3>
-                    <p>{new Date(draw.date).toLocaleDateString("pt-BR")}</p>
+                    <h3 className="w-full break-words">{draw.title}</h3>
+                    <p>
+                      Data: {new Date(draw.date).toLocaleDateString("pt-BR")}
+                    </p>
                   </li>
                 </Link>
               ))}
