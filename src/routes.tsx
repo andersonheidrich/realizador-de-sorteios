@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Draws, Tournament } from "./views";
+import { Home, Tournament } from "./views";
 import { Footer, Header } from "./components";
 import { American, Doubles, Single } from "./views/Draws/components/Formats";
 import { AmericanGroups } from "./views/Draws/components/Formats/American";
 import { DoublesGroups } from "./views/Draws/components/Formats/Doubles";
 import { Login, Profile, Register } from "./views/Auth";
+import CreateDraw from "./views/Draws/CreateDraw";
 
 const AppRoutes = () => {
   return (
@@ -19,7 +20,7 @@ const AppRoutes = () => {
         {/* <Route path="/profile/mydraws" element={<MyDraws />} /> */}
         {/* <Route path="/profile/mytournaments" element={<MyTournaments />} /> */}
         {/* Sorteios */}
-        <Route path="/draws" element={<Draws />} />
+        <Route path="/draws" element={<CreateDraw />} />
         <Route path="/draws/american" element={<American />} />
         <Route path="/draws/american/groups" element={<AmericanGroups />} />
         <Route path="/draws/doubles" element={<Doubles />} />

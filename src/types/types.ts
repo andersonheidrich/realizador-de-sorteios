@@ -74,3 +74,12 @@ export interface DrawCreate {
   title: string;
   date: string;
 }
+
+export type DrawType = "american" | "doubles" | "single";
+
+export interface DrawPayload {
+  title: string;
+  type: DrawType;
+  players?: string[];
+  teams?: string[][];
+}

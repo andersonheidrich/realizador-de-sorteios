@@ -1,7 +1,6 @@
-import React from "react";
 import type { InputProps } from "./interfaces";
 
-const Input: React.FC<InputProps> = ({
+const Input = ({
   type,
   text,
   name,
@@ -9,7 +8,7 @@ const Input: React.FC<InputProps> = ({
   handleOnChange,
   value,
   multiple,
-}) => {
+}: InputProps) => {
   return (
     <div className="flex flex-col mb-4">
       <label className="mb-1 font-bold text-xl" htmlFor={name}>

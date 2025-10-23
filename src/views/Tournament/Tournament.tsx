@@ -40,7 +40,7 @@ const Tournament = () => {
             {user.name} ({user.email})
           </p>
         )}
-        <div className="flex flex-col w-160 max-h-164 justify-start items-center p-4 border-2 rounded-2xl">
+        <div className="flex flex-col w-160 max-h-164 justify-start items-center p-4 shadow shadow-gray-400 rounded-2xl">
           <h2 className="text-[20px] font-bold mb-4">Meus Torneios</h2>
           <h2 className="text-[20px] font-bold mb-4">Filtro AQUI</h2>
           {userDraws.length === 0 ? (
@@ -48,14 +48,14 @@ const Tournament = () => {
               Nenhum torneio encontrado.
             </p>
           ) : (
-            <ul className="w-full justify-start items-center overflow-y-auto overflow-x-hidden">
+            <ul className="w-full justify-start items-center overflow-y-auto overflow-x-hidden py-4">
               {userDraws.map((draw) => (
                 <Link
-                  className="mb-4 bg-yellow-500 hover:bg-yellow-400"
+                  className="mb-4 bg-yellow-500 hover:bg-yellow-400 rounded-2xl"
                   key={draw._id}
                   to={`/tournaments/${draw._id}`}
                 >
-                  <li className="flex flex-col items-start w-full p-2 gap-1">
+                  <li className="flex flex-col items-start w-full px-4 py-2 gap-1">
                     <h3 className="w-full break-words">{draw.title}</h3>
                     <p>
                       Data: {new Date(draw.date).toLocaleDateString("pt-BR")}
