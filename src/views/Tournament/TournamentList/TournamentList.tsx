@@ -2,12 +2,15 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTournament } from "@/hooks/useTournament";
+import { useTournamentFilter } from "@/hooks/useTournamentFilter";
 import { useFlash } from "@/context/FlashContext";
-import { getUserName } from "@/utils/getUserName";
+import { Filter } from "@/components";
 
 const TournamentList = () => {
   const { tournaments, fetchTournamentsByUser, loading } = useTournament();
   const { showFlash } = useFlash();
+  const { sortBy, setSortBy, filteredTournaments, setFilteredTournaments } =
+    useTournamentFilter(tournaments);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -41,16 +44,21 @@ const TournamentList = () => {
           Criar Torneio
         </Link>
         <div className="flex flex-col w-160 max-h-164 justify-start items-center p-4 shadow shadow-gray-400 rounded-2xl">
-          <h2 className="text-[20px] font-bold">Filtro AQUI</h2>
+          <Filter
+            tournaments={tournaments}
+            onFilteredChange={setFilteredTournaments}
+            sortBy={sortBy}
+            onSortChange={setSortBy}
+          />
           {loading ? (
             <p>Carregando...</p>
-          ) : tournaments.length === 0 ? (
+          ) : filteredTournaments.length === 0 ? (
             <p className="text-center text-gray-500">
               Nenhum torneio encontrado.
             </p>
           ) : (
             <ul className="w-full justify-center items-center overflow-y-auto overflow-x-hidden py-4">
-              {tournaments.map((tournament) => (
+              {filteredTournaments.map((tournament) => (
                 <Link
                   className="my-2 bg-yellow-500 hover:bg-yellow-400 rounded-2xl"
                   key={tournament._id}
@@ -69,10 +77,6 @@ const TournamentList = () => {
                       </span>
                       <span className="bg-white/30 px-2 py-1 rounded">
                         {tournament.category}
-                      </span>
-                      Criado por:
-                      <span className="bg-white/30 px-2 py-1 rounded">
-                        {getUserName(tournament.user)}
                       </span>
                     </div>
                   </li>
