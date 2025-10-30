@@ -45,7 +45,13 @@ const TournamentDetails = () => {
   /* Verifica se o usuário é o dono do torneio */
   useEffect(() => {
     if (tournament && userId) {
-      const owner = tournament.user === userId;
+      // Verifica se tournament.user é string (ID) ou objeto (populado)
+      const tournamentUserId =
+        typeof tournament.user === "string"
+          ? tournament.user
+          : tournament.user?._id || tournament.user?.id;
+
+      const owner = tournamentUserId === userId;
       setIsOwner(owner);
     } else {
       setIsOwner(false);

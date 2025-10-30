@@ -1,10 +1,14 @@
 import { useTournament } from "@/hooks/useTournament";
+import { useTournamentFilter } from "@/hooks/useTournamentFilter";
 import { getUserName } from "@/utils/getUserName";
+import { Filter } from "@/components";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
   const { tournaments, fetchTournaments, loading } = useTournament();
+  const { sortBy, setSortBy, filteredTournaments, setFilteredTournaments } =
+    useTournamentFilter(tournaments);
 
   useEffect(() => {
     fetchTournaments();
@@ -23,16 +27,21 @@ const Home = () => {
           </li>
         </ul>
         <div className="flex flex-col w-160 max-h-164 justify-start items-center p-4 mt-3 shadow shadow-gray-400 rounded-2xl">
-          <h2 className="text-[20px] font-bold">Filtro AQUI</h2>
+          <Filter
+            tournaments={tournaments}
+            onFilteredChange={setFilteredTournaments}
+            sortBy={sortBy}
+            onSortChange={setSortBy}
+          />
           {loading ? (
             <p>Carregando...</p>
-          ) : tournaments.length === 0 ? (
+          ) : filteredTournaments.length === 0 ? (
             <p className="text-center text-gray-500">
               Nenhum torneio encontrado.
             </p>
           ) : (
             <ul className="w-full justify-start items-center overflow-y-auto overflow-x-hidden py-4">
-              {tournaments.map((tournament) => (
+              {filteredTournaments.map((tournament) => (
                 <Link
                   className="my-2 bg-gray-400 hover:bg-gray-500 rounded-2xl"
                   key={tournament._id}
