@@ -18,7 +18,7 @@ const Login = () => {
   return (
     <section>
       <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
-        <div className="my-8 text-[32px] font-bold">Entrar</div>
+        <div className="mt-8 text-3xl font-bold">Entrar</div>
         <form onSubmit={handleSubmit} className="w-[300px]">
           <Input
             text="E-mail"

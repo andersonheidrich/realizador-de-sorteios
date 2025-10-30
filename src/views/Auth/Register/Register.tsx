@@ -39,7 +39,7 @@ const Register = () => {
   return (
     <section>
       <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
-        <div className="my-8 text-[32px] font-bold">Cadastrar</div>
+        <div className="mt-8 text-3xl font-bold">Cadastrar</div>
         <form onSubmit={handleSubmit} className="w-[300px]">
           <Input
             text="Nome"

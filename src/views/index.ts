@@ -1,3 +1,4 @@
 export { default as Home } from "./Home";
-export { default as Draws } from "./Draws";
-export { default as Tournament } from "./Tournament";
+export { default as CreateTournament } from "./Tournament/CreateTournament";
+export { default as TournamentDetails } from "./Tournament/TournamentDetails";
+export { default as TournamentList } from "./Tournament/TournamentList";

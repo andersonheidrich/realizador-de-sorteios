@@ -1,29 +1,4 @@
-// Jogador é apenas uma string (nome)
-export type Player = string;
-
-// Par = dupla de jogadores
-export type Pair = [Player, Player];
-
-// Grupo = lista de jogadores
-export type Group<T> = T[];
-
-// Um jogo (match) é formado por duas duplas
-export type Match<T> = {
-  double1: T[];
-  double2: T[];
-};
-
-// Uma rodada contém vários jogos (matches)
-export type Round<T> = Match<T>[];
-
-// Resultado completo = várias rodadas por grupo
-export type RoundsResult<T> = Round<T>[][];
-
-// Estado passado pelo navigate
-export interface NavigationState<T> {
-  rounds: RoundsResult<T>;
-  players: Group<T>[];
-}
+// User
 
 export interface UserRegister {
   name: string;
@@ -49,6 +24,12 @@ export interface UserEdit {
 export interface AuthResponse {
   token: string;
   message?: string;
+  user: {
+    id: string;
+    _id: string;
+    name: string;
+    email: string;
+  };
 }
 
 export interface UserContextType {
@@ -58,28 +39,54 @@ export interface UserContextType {
   logout: () => void;
 }
 
-export interface Draw {
+// Tournament
+
+export interface Player {
+  name: string;
+}
+
+export interface Pair {
+  players: Player[];
+}
+
+export interface Match {
+  team1: string[]; // nomes dos jogadores
+  team2: string[];
+  score?: string | null;
+  winner?: string[] | null;
+}
+
+export interface Standing {
+  pair: string;
+  wins: number;
+  gamesWon: number;
+  gamesLost: number;
+  gameDiff?: number;
+}
+
+export interface Group {
+  name: string;
+  pairs: Pair[];
+  matches: Match[];
+  standings?: Standing[];
+}
+
+export interface Round {
+  name: string;
+  matches: Match[];
+}
+
+export interface Tournament {
   _id?: string;
-  title: string;
+  name: string;
   date: string;
-  type: "american" | "doubles" | "singles";
-  players: string[];
-  teams: Pair[];
-  groups: string[][];
-  rounds: Round<Pair>[];
-  userId?: string; // vinculado ao usuário autenticado
-}
-
-export interface DrawCreate {
-  title: string;
-  date: string;
-}
-
-export type DrawType = "american" | "doubles" | "single";
-
-export interface DrawPayload {
-  title: string;
-  type: DrawType;
-  players?: string[];
-  teams?: string[][];
+  category: "Pro" | "A" | "B" | "C" | "D" | "E";
+  modality: "livre" | "feminina" | "mista";
+  doubles: boolean;
+  pairs: Pair[];
+  groups?: Group[];
+  rounds?: Round[];
+  user?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

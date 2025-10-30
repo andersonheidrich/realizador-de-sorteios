@@ -82,7 +82,7 @@ const Profile = () => {
   return (
     <section>
       <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
-        <div className="mt-8 mb-4 text-[32px] font-bold">Perfil</div>
+        <div className="mt-8 mb-4 text-3xl font-bold">Perfil</div>
         {(user.image || preview) && (
           <RoundedImage
             src={
