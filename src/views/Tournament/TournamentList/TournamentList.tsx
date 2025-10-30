@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTournament } from "@/hooks/useTournament";
 import { useFlash } from "@/context/FlashContext";
+import { getUserName } from "@/utils/getUserName";
 
 const TournamentList = () => {
   const { tournaments, fetchTournamentsByUser, loading } = useTournament();
@@ -68,6 +69,10 @@ const TournamentList = () => {
                       </span>
                       <span className="bg-white/30 px-2 py-1 rounded">
                         {tournament.category}
+                      </span>
+                      Criado por:
+                      <span className="bg-white/30 px-2 py-1 rounded">
+                        {getUserName(tournament.user)}
                       </span>
                     </div>
                   </li>

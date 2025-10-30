@@ -1,4 +1,5 @@
 import { useTournament } from "@/hooks/useTournament";
+import { getUserName } from "@/utils/getUserName";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -43,13 +44,17 @@ const Home = () => {
                       Data:{" "}
                       {new Date(tournament.date).toLocaleDateString("pt-BR")}
                     </p>
-                    <div className="flex gap-2 text-sm mt-1 items-center">
+                    <div className="flex gap-2 text-sm mt-1 items-center  capitalize">
                       Categoria:
-                      <span className="bg-white/30 px-2 py-1 rounded capitalize">
+                      <span className="bg-white/30 px-2 py-1 rounded">
                         {tournament.modality}
                       </span>
                       <span className="bg-white/30 px-2 py-1 rounded">
                         {tournament.category}
+                      </span>
+                      Criado por:
+                      <span className="bg-white/30 px-2 py-1 rounded">
+                        {getUserName(tournament.user)}
                       </span>
                     </div>
                   </li>

@@ -1,5 +1,11 @@
 // User
 
+export interface User {
+  id: string;
+  _id: string;
+  name: string;
+  email: string;
+}
 export interface UserRegister {
   name: string;
   email: string;
@@ -86,7 +92,7 @@ export interface Tournament {
   pairs: Pair[];
   groups?: Group[];
   rounds?: Round[];
-  user?: string;
+  user?: string | User;
   createdAt?: string;
   updatedAt?: string;
 }
