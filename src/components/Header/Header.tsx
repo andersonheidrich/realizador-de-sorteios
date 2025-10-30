@@ -32,7 +32,7 @@ const Header = () => {
     },
     {
       label: "Torneios",
-      path: "/tournaments",
+      path: "/tournaments/my-tournaments",
       icon: <EmojiEventsIcon />,
       activeClasses: "bg-yellow-500 text-white border-b-yellow-500",
       baseClasses:

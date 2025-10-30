@@ -1,27 +1,45 @@
-import { useTournament } from "@/hooks/useTournament";
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTournament } from "@/hooks/useTournament";
+import { useFlash } from "@/context/FlashContext";
 
-const Home = () => {
-  const { tournaments, fetchTournaments, loading } = useTournament();
+const TournamentList = () => {
+  const { tournaments, fetchTournamentsByUser, loading } = useTournament();
+  const { showFlash } = useFlash();
 
   useEffect(() => {
-    fetchTournaments();
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      showFlash("Você precisa estar logado para ver seus torneios!", "warning");
+      return;
+    }
+
+    fetchTournamentsByUser();
   }, []);
+
+  const handleCreateClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      showFlash("Você precisa estar logado para criar um torneio!", "warning");
+    }
+  };
 
   return (
     <section>
       <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
-        <h1 className="mt-8 mb-4 text-3xl font-bold">Sorteador On-line</h1>
-        <ul className="mt-3">
-          <li>Realize sorteios.</li>
-          <li>Crie e gerencie torneios de forma rápida e fácil.</li>
-          <li>
-            Faça download dos grupos e tabelas de jogos em arquivos nos formatos
-            PDF e XLSX.
-          </li>
-        </ul>
-        <div className="flex flex-col w-160 max-h-164 justify-start items-center p-4 mt-3 shadow shadow-gray-400 rounded-2xl">
+        <div className="mt-8 mb-4 text-3xl font-bold">Meus Torneios</div>
+        <Link
+          to="/draws"
+          onClick={handleCreateClick}
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >
+          Criar Torneio
+        </Link>
+        <div className="flex flex-col w-160 max-h-164 justify-start items-center p-4 shadow shadow-gray-400 rounded-2xl">
           <h2 className="text-[20px] font-bold">Filtro AQUI</h2>
           {loading ? (
             <p>Carregando...</p>
@@ -30,10 +48,10 @@ const Home = () => {
               Nenhum torneio encontrado.
             </p>
           ) : (
-            <ul className="w-full justify-start items-center overflow-y-auto overflow-x-hidden py-4">
+            <ul className="w-full justify-center items-center overflow-y-auto overflow-x-hidden py-4">
               {tournaments.map((tournament) => (
                 <Link
-                  className="my-2 bg-gray-400 hover:bg-gray-500 rounded-2xl"
+                  className="my-2 bg-yellow-500 hover:bg-yellow-400 rounded-2xl"
                   key={tournament._id}
                   to={`/tournaments/${tournament._id}`}
                 >
@@ -63,4 +81,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default TournamentList;

@@ -26,6 +26,13 @@ export const useAuth = () => {
       // salva o token puro (sem aspas extras)
       localStorage.setItem("token", data.token);
 
+      if (data.user && (data.user._id || data.user.id)) {
+        const userId = data.user._id || data.user.id;
+        localStorage.setItem("userId", userId);
+      } else {
+        console.error("Usuário não possui ID na resposta:", data.message);
+      }
+
       // define o usuário como autenticado
       setAuthenticated(true);
 
