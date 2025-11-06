@@ -3,7 +3,7 @@ import type { Tournament } from "@/types/types";
 import { useState, useEffect } from "react";
 
 export const useTournamentFilter = (tournaments: Tournament[]) => {
-  const [sortBy, setSortBy] = useState<SortOption>("date-desc");
+  const [sortBy, setSortBy] = useState<SortOption>("date-asc");
   const [filteredTournaments, setFilteredTournaments] = useState<Tournament[]>(
     []
   );
@@ -12,9 +12,13 @@ export const useTournamentFilter = (tournaments: Tournament[]) => {
     const sorted = [...tournaments].sort((a, b) => {
       switch (sortBy) {
         case "date-asc":
-          return new Date(a.date).getTime() - new Date(b.date).getTime();
+          return (
+            new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+          );
         case "date-desc":
-          return new Date(b.date).getTime() - new Date(a.date).getTime();
+          return (
+            new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+          );
         case "name-asc":
           return a.name.localeCompare(b.name, "pt-BR");
         case "name-desc":

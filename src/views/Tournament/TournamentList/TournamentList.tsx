@@ -7,9 +7,9 @@ import { useFlash } from "@/context/FlashContext";
 import { Filter } from "@/components";
 
 const TournamentList = () => {
-  const { tournaments, fetchTournamentsByUser, loading } = useTournament();
+  const { tournaments, fetchTournaments, loading } = useTournament();
   const { showFlash } = useFlash();
-  const { sortBy, setSortBy, filteredTournaments, setFilteredTournaments } =
+  const { sortBy, setSortBy, filteredTournaments } =
     useTournamentFilter(tournaments);
 
   useEffect(() => {
@@ -20,40 +20,19 @@ const TournamentList = () => {
       return;
     }
 
-    fetchTournamentsByUser();
+    fetchTournaments();
   }, []);
-
-  const handleCreateClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-      showFlash("Você precisa estar logado para criar um torneio!", "warning");
-    }
-  };
 
   return (
     <section>
-      <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
+      <div className="flex flex-col w-full min-h-screen items-center pt-22 px-5 bg-white">
         <div className="mt-8 mb-4 text-3xl font-bold">Meus Torneios</div>
-        <Link
-          to="/draws"
-          onClick={handleCreateClick}
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-        >
-          Criar Torneio
-        </Link>
-        <div className="flex flex-col w-160 max-h-164 justify-start items-center p-4 shadow shadow-gray-400 rounded-2xl">
-          <Filter
-            tournaments={tournaments}
-            onFilteredChange={setFilteredTournaments}
-            sortBy={sortBy}
-            onSortChange={setSortBy}
-          />
+        <div className="flex flex-col w-full sm:w-150 max-h-164 justify-start items-center p-4 shadow shadow-gray-400 rounded-2xl text-sm sm:text-base">
+          {/* <Filter sortBy={sortBy} onSortChange={setSortBy} /> */}
           {loading ? (
             <p>Carregando...</p>
           ) : filteredTournaments.length === 0 ? (
-            <p className="text-center text-gray-500">
+            <p className="text-center text-gray-500 py-4">
               Nenhum torneio encontrado.
             </p>
           ) : (
@@ -64,21 +43,23 @@ const TournamentList = () => {
                   key={tournament._id}
                   to={`/tournaments/${tournament._id}`}
                 >
-                  <li className="flex flex-col items-start w-full px-4 py-2 gap-1">
+                  <li className="flex flex-col items-start w-full px-4 py-2 gap-1 font-bold">
                     <h3 className="w-full break-words">{tournament.name}</h3>
                     <p>
-                      Data:{" "}
-                      {new Date(tournament.date).toLocaleDateString("pt-BR")}
+                      <span>
+                        Início:{" "}
+                        {new Date(tournament.startDate).toLocaleDateString(
+                          "pt-BR"
+                        )}
+                      </span>
+                      <span> — </span>
+                      <span>
+                        Término:{" "}
+                        {new Date(tournament.endDate).toLocaleDateString(
+                          "pt-BR"
+                        )}
+                      </span>
                     </p>
-                    <div className="flex gap-2 text-sm mt-1 items-center">
-                      Categoria:
-                      <span className="bg-white/30 px-2 py-1 rounded capitalize">
-                        {tournament.modality}
-                      </span>
-                      <span className="bg-white/30 px-2 py-1 rounded">
-                        {tournament.category}
-                      </span>
-                    </div>
                   </li>
                 </Link>
               ))}

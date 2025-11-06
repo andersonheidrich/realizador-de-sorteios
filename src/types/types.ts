@@ -1,8 +1,8 @@
 // User
 
 export interface User {
-  id: string;
-  _id: string;
+  id?: string;
+  _id?: string;
   name: string;
   email: string;
 }
@@ -77,6 +77,14 @@ export interface Group {
   standings?: Standing[];
 }
 
+export interface Category {
+  id: string;
+  name: string;
+  pairs: Pair[];
+  groups?: Group[];
+  isDrawn: boolean;
+}
+
 export interface Round {
   name: string;
   matches: Match[];
@@ -85,11 +93,11 @@ export interface Round {
 export interface Tournament {
   _id?: string;
   name: string;
-  date: string;
-  category: "Pro" | "A" | "B" | "C" | "D" | "E";
-  modality: "livre" | "feminina" | "mista";
-  doubles: boolean;
-  pairs: Pair[];
+  startDate: string;
+  endDate: string;
+  categories?: Category[];
+  doubles?: boolean;
+  pairs?: Pair[];
   groups?: Group[];
   rounds?: Round[];
   user?: string | User;

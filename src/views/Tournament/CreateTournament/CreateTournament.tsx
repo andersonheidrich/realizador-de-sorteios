@@ -3,22 +3,30 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTournament } from "@/hooks/useTournament";
 import { useFlash } from "@/context/FlashContext";
-import { Input, Select } from "@/components";
+import { Input } from "@/components";
 
 const CreateTournament = () => {
   const navigate = useNavigate();
-  const { createTournament, parsePairsText, error } = useTournament();
+  const { createTournament, error } = useTournament();
   const { showFlash } = useFlash();
 
   const [name, setName] = useState<string>("");
-  const [date, setDate] = useState<string>("");
-  const [category, setCategory] = useState<"Pro" | "A" | "B" | "C" | "D" | "E">(
-    "Pro"
-  );
-  const [modality, setModality] = useState<"livre" | "feminina" | "mista">(
-    "livre"
-  );
-  const [pairsText, setPairsText] = useState<string>("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
+
+  // Função para converter data local para ISO sem perder o dia
+  const dateToISO = (dateString: string): string => {
+    if (!dateString) return "";
+    const [year, month, day] = dateString.split("-");
+    return new Date(
+      parseInt(year),
+      parseInt(month) - 1,
+      parseInt(day),
+      12,
+      0,
+      0
+    ).toISOString();
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,26 +38,33 @@ const CreateTournament = () => {
       return;
     }
 
-    try {
-      const pairs = parsePairsText(pairsText);
+    // Validação dos campos
+    if (!name.trim()) {
+      showFlash("O nome do torneio é obrigatório!", "warning");
+      return;
+    }
 
-      // validação: todas as duplas devem ter dois jogadores
-      const isValidPairs = pairs.every(
-        (p) => p.players.length === 2 && p.players.every((pl) => pl.name)
+    if (!startDate) {
+      showFlash("A data de início é obrigatória!", "warning");
+      return;
+    }
+
+    // Valida se a data de término é maior ou igual à data de início
+    if (endDate && new Date(endDate) < new Date(startDate)) {
+      showFlash(
+        "A data de término não pode ser anterior à data de início!",
+        "warning"
       );
-      if (!isValidPairs) {
-        alert("Todas as duplas devem ter dois nomes válidos");
-        return;
-      }
+      return;
+    }
 
+    try {
       const newTournament = await createTournament({
-        name,
-        date,
-        category,
-        modality,
-        doubles: true,
-        pairs,
+        name: name.trim(),
+        startDate: dateToISO(startDate),
+        endDate: dateToISO(endDate),
       });
+      showFlash("Torneio criado com sucesso!", "success");
       navigate(`/tournaments/${newTournament._id}`);
     } catch (err: any) {
       showFlash(
@@ -60,9 +75,9 @@ const CreateTournament = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
-      <div className="mt-8 mb-4 text-3xl font-bold">Sorteios</div>
-      <div className="flex flex-col w-160 p-4 rounded-2xl shadow shadow-gray-400">
+    <div className="flex flex-col min-h-screen items-center pt-22 px-5 bg-white">
+      <div className="mt-8 mb-4 text-3xl font-bold">Novo Torneio</div>
+      <div className="flex flex-col w-full sm:w-150 p-4 rounded-2xl shadow shadow-gray-400">
         <form onSubmit={handleSubmit} className="flex w-full flex-col">
           <Input
             text="Nome do Torneio"
@@ -73,42 +88,35 @@ const CreateTournament = () => {
             handleOnChange={(e) => setName(e.target.value)}
           />
           <Input
-            text="Data do Torneio"
+            text="Data de Início"
             type="date"
-            name="date"
-            placeholder="Digite a data do torneio"
-            value={date}
-            handleOnChange={(e) => setDate(e.target.value)}
+            name="startDate"
+            placeholder="Digite a data de início do torneio"
+            value={startDate}
+            handleOnChange={(e) => setStartDate(e.target.value)}
           />
-          <Select
-            text="Modalidade"
-            name="modality"
-            options={["livre", "feminina", "mista"]}
-            handleOnChange={(e) => setModality(e.target.value as any)}
-            value={modality}
-          />
-          <Select
-            text="Categoria"
-            name="category"
-            options={["Pro", "A", "B", "C", "D", "E"]}
-            handleOnChange={(e) => setCategory(e.target.value as any)}
-            value={category}
-          />
-          <textarea
-            placeholder={`- Cada linha representa uma dupla.\n- Não deixe linhas vazias.\n- Cada dupla deve ter exatamente dois jogadores.\n- Separe os nomes com vírgula.\nEx.:\nAna,Carlos\nBia,João\nClara,Pedro`}
-            value={pairsText}
-            onChange={(e) => setPairsText(e.target.value)}
-            className="p-2 border border-[#777] rounded-sm placeholder-[#7b7b7b] text-md resize-none"
-            rows={12}
+          <Input
+            text="Data de Término"
+            type="date"
+            name="endDate"
+            placeholder="Digite a data de término do torneio"
+            value={endDate}
+            handleOnChange={(e) => setEndDate(e.target.value)}
           />
           <button
             type="submit"
-            className="bg-green-600 text-white p-2 mt-4 rounded-lg hover:bg-green-700 cursor-pointer"
+            className="bg-violet-600 text-white p-2 mt-4 rounded-lg hover:bg-violet-500 font-bold cursor-pointer"
           >
             Criar Torneio
           </button>
           {error && <p className="text-red-500 mt-2">{error}</p>}
         </form>
+        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="text-sm text-blue-800">
+            <strong>💡 Dica:</strong> Após criar o torneio, você poderá
+            adicionar categorias e duplas na tela de gerenciamento.
+          </p>
+        </div>
       </div>
     </div>
   );
