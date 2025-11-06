@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "@/context/useUser";
 import HomeIcon from "@mui/icons-material/Home";
-import SportsTennisIcon from "@mui/icons-material/SportsTennis";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -18,21 +17,21 @@ const Header = () => {
       label: "Início",
       path: "/",
       icon: <HomeIcon />,
-      activeClasses: "bg-gray-400 text-white border-b-gray-400",
+      activeClasses: "bg-gray-600 text-white border-b-gray-600",
       baseClasses:
-        "border-b-gray-400 hover:bg-gray-400 hover:text-white transition-colors duration-300",
+        "border-b-gray-600 hover:bg-gray-600 hover:text-white transition-colors duration-300",
     },
     {
-      label: "Sorteios",
-      path: "/draws",
-      icon: <SportsTennisIcon />,
-      activeClasses: "bg-red-600 text-white border-b-red-600",
+      label: "Novo Torneio",
+      path: "/new-tournament",
+      icon: <EmojiEventsIcon />,
+      activeClasses: "bg-violet-600 text-white border-b-violet-600",
       baseClasses:
-        "border-b-red-600 hover:bg-red-600 hover:text-white transition-colors duration-300",
+        "border-b-violet-600 hover:bg-violet-600 hover:text-white transition-colors duration-300",
     },
     {
-      label: "Torneios",
-      path: "/tournaments/my-tournaments",
+      label: "Meus Torneios",
+      path: "/my-tournaments",
       icon: <EmojiEventsIcon />,
       activeClasses: "bg-yellow-500 text-white border-b-yellow-500",
       baseClasses:
@@ -66,9 +65,9 @@ const Header = () => {
       label: "Sair",
       path: "/logout",
       icon: <LogoutIcon />,
-      activeClasses: "bg-gray-700 text-white border-b-gray-700",
+      activeClasses: "bg-red-600 text-white border-b-red-600",
       baseClasses:
-        "border-b-gray-700 hover:bg-gray-700 hover:text-white transition-colors duration-300",
+        "border-b-red-600 hover:bg-red-600 hover:text-white transition-colors duration-300",
     },
   ];
 
@@ -89,15 +88,14 @@ const Header = () => {
   };
 
   return (
-    <header className="flex w-screen h-[90px] justify-center items-center fixed z-[1000] bg-white border-b-[4px] border-b-gray-300 font-bold gap-2">
-      <nav className="flex w-[536px] h-[94px]">
+    <header className="flex w-full h-23 justify-center items-center fixed z-[1000] bg-white border-b-[4px] border-b-gray-300 font-bold gap-2">
+      <nav className="flex w-full h-24 justify-center">
         {menuItems.map((item) => {
           const isActive = location.pathname === item.path;
-
           return (
             <div
               key={item.path}
-              className={`flex flex-col w-[107px] justify-center items-center cursor-pointer border-b-4 ${
+              className={`flex flex-col min-w-16 w-32 justify-center items-center text-center cursor-pointer border-b-4 text-sm sm:text-base ${
                 isActive ? item.activeClasses : item.baseClasses
               }`}
               aria-label={item.label}

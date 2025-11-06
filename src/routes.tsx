@@ -20,14 +20,9 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
 
-        {/* Sorteios */}
-        <Route path="/draws" element={<CreateTournament />} />
-
         {/* Torneios */}
-        <Route
-          path="/tournaments/my-tournaments"
-          element={<TournamentList />}
-        />
+        <Route path="/my-tournaments" element={<TournamentList />} />
+        <Route path="/new-tournament" element={<CreateTournament />} />
         <Route path="/tournaments/:id" element={<TournamentDetails />} />
       </Routes>
       <Footer />

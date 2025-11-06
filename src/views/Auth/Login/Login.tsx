@@ -17,9 +17,9 @@ const Login = () => {
 
   return (
     <section>
-      <div className="flex flex-col min-h-screen items-center pt-[90px] bg-white">
+      <div className="flex flex-col w-full min-h-screen items-center pt-22 px-5 bg-white">
         <div className="mt-8 text-3xl font-bold">Entrar</div>
-        <form onSubmit={handleSubmit} className="w-[300px]">
+        <form onSubmit={handleSubmit} className="w-75 sm:w-100">
           <Input
             text="E-mail"
             type="email"
@@ -37,7 +37,7 @@ const Login = () => {
           <input
             type="submit"
             value="Entrar"
-            className="w-full rounded-lg border-none min-w-[100px] min-h-[2.5rem] shadow text-white bg-green-600 hover:bg-green-500 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
+            className="w-full rounded-lg border-none min-w-25 min-h-[2.5rem] shadow text-white bg-green-600 hover:bg-green-500 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
           />
         </form>
       </div>
