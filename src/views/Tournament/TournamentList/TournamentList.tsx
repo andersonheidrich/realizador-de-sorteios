@@ -28,7 +28,7 @@ const TournamentList = () => {
       <div className="flex flex-col w-full min-h-screen items-center pt-22 px-5 bg-white">
         <div className="mt-8 mb-4 text-3xl font-bold">Meus Torneios</div>
         <div className="flex flex-col w-full sm:w-150 max-h-164 justify-start items-center p-4 shadow shadow-gray-400 rounded-2xl text-sm sm:text-base">
-          {/* <Filter sortBy={sortBy} onSortChange={setSortBy} /> */}
+          <Filter sortBy={sortBy} onSortChange={setSortBy} />
           {loading ? (
             <p>Carregando...</p>
           ) : filteredTournaments.length === 0 ? (
