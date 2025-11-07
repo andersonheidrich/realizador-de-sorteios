@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-import api from "@/services/api";
+import api, { API_URL } from "@/services/api";
 import { Input, RoundedImage } from "@/components";
 import type { UserEdit } from "@/types/types";
 
@@ -88,7 +88,8 @@ const Profile = () => {
             src={
               preview
                 ? URL.createObjectURL(preview)
-                : `http://localhost:5000/images/users/${user.image}`
+                : // : `http://localhost:5000/images/users/${user.image}`
+                  `${API_URL}/images/users/${user.image}`
             }
             alt={user.name}
             size="large"
