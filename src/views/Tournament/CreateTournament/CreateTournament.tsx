@@ -28,7 +28,7 @@ const CreateTournament = () => {
     ).toISOString();
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Verifica se o usuário está logado antes de enviar
@@ -49,10 +49,15 @@ const CreateTournament = () => {
       return;
     }
 
-    // Valida se a data de término é maior ou igual à data de início
+    if (!endDate) {
+      showFlash("A data de encerramento é obrigatória!", "warning");
+      return;
+    }
+
+    // Valida se a data de encerramento é maior ou igual à data de início
     if (endDate && new Date(endDate) < new Date(startDate)) {
       showFlash(
-        "A data de término não pode ser anterior à data de início!",
+        "A data de encerramento não pode ser anterior à data de início!",
         "warning"
       );
       return;
@@ -96,10 +101,10 @@ const CreateTournament = () => {
             handleOnChange={(e) => setStartDate(e.target.value)}
           />
           <Input
-            text="Data de Término"
+            text="Data de Encerramento"
             type="date"
             name="endDate"
-            placeholder="Digite a data de término do torneio"
+            placeholder="Digite a data de encerramento do torneio"
             value={endDate}
             handleOnChange={(e) => setEndDate(e.target.value)}
           />

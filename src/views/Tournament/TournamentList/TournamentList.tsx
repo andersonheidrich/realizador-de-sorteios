@@ -54,7 +54,7 @@ const TournamentList = () => {
                       </span>
                       <span> — </span>
                       <span>
-                        Término:{" "}
+                        Encerramento:{" "}
                         {new Date(tournament.endDate).toLocaleDateString(
                           "pt-BR"
                         )}

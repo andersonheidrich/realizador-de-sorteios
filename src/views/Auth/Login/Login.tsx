@@ -1,10 +1,12 @@
 import { Input } from "@/components";
 import { useUser } from "@/context/useUser";
+import { useFlash } from "@/context/FlashContext";
 import type { UserLogin } from "@/types/types";
 import { useForm } from "@/hooks/useForm";
 
 const Login = () => {
   const { login } = useUser();
+  const { showFlash } = useFlash();
   const { values: user, handleChange } = useForm<UserLogin>({
     email: "",
     password: "",
@@ -12,6 +14,18 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Validação dos campos
+    if (!user.email.trim()) {
+      showFlash("O e-mail é obrigatório!", "warning");
+      return;
+    }
+
+    if (!user.password.trim()) {
+      showFlash("A senha é obrigatória!", "warning");
+      return;
+    }
+
     login(user);
   };
 

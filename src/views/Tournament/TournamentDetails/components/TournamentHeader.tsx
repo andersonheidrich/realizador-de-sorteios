@@ -26,7 +26,8 @@ const TournamentHeader = ({
         </span>
         <span> — </span>
         <span className="font-medium">
-          Término: {new Date(tournament.endDate).toLocaleDateString("pt-BR")}
+          Encerramento:{" "}
+          {new Date(tournament.endDate).toLocaleDateString("pt-BR")}
         </span>
       </p>
 

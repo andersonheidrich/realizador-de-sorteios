@@ -1,11 +1,13 @@
 import React from "react";
 import { Input } from "@/components";
 import { useUser } from "@/context/useUser";
+import { useFlash } from "@/context/FlashContext";
 import type { UserRegister } from "@/types/types";
 import { useForm } from "@/hooks/useForm";
 
 const Register = () => {
   const { userRegister } = useUser();
+  const { showFlash } = useFlash();
   const { values: user, handleChange } = useForm<UserRegister>({
     name: "",
     email: "",
@@ -17,9 +19,30 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Validação dos campos
+    if (!user.name.trim()) {
+      showFlash("O nome é obrigatório!", "warning");
+      return;
+    }
+
+    if (!user.email.trim()) {
+      showFlash("O e-mail é obrigatório!", "warning");
+      return;
+    }
+
+    if (!user.password.trim()) {
+      showFlash("A senha é obrigatória!", "warning");
+      return;
+    }
+
+    if (!user.confirm_password.trim()) {
+      showFlash("A confirmação da senha é obrigatória!", "warning");
+      return;
+    }
+
     // Validação simples de senha
     if (user.password !== user.confirm_password) {
-      alert("As senhas não conferem!");
+      showFlash("As senhas não conferem!", "warning");
       return;
     }
 

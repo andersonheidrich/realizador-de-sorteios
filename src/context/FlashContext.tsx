@@ -72,7 +72,7 @@ export const FlashProvider: React.FC<{ children: React.ReactNode }> = ({
                   onClick={() => removeFlash(flash.id)}
                   className="ml-4 text-white hover:text-gray-200 font-bold text-xl cursor-pointer"
                 >
-                  ×
+                  x
                 </button>
               </div>
             ))}
