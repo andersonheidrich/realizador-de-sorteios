@@ -5,3 +5,4 @@ export { default as GroupCard } from "./GroupCard";
 export { default as GroupMatches } from "./GroupMatches";
 export { default as GroupStandings } from "./GroupStandings";
 export { default as TournamentHeader } from "./TournamentHeader";
+export { default as TournamentInfoEditor } from "./TournamentInfoEditor";

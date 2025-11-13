@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Plus, Trash2, Users } from "lucide-react";
 import type { Category } from "@/types/types";
+import { useFlash } from "@/hooks/useFlash";
 
 interface Props {
   categories: Category[];
@@ -13,6 +14,7 @@ const CategoryManager = ({
   onCategoriesChange,
   onDrawCategory,
 }: Props) => {
+  const { showFlash } = useFlash();
   const [newCategoryName, setNewCategoryName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [pairsText, setPairsText] = useState("");
@@ -20,7 +22,7 @@ const CategoryManager = ({
   // Adicionar nova categoria
   const handleAddCategory = () => {
     if (!newCategoryName.trim()) {
-      alert("Digite o nome da categoria");
+      showFlash("Digite o nome da categoria!", "warning");
       return;
     }
 
@@ -48,12 +50,12 @@ const CategoryManager = ({
   // Adicionar duplas à categoria selecionada
   const handleAddPairs = () => {
     if (!selectedCategory) {
-      alert("Selecione uma categoria primeiro");
+      showFlash("Selecione uma categoria primeiro!", "warning");
       return;
     }
 
     if (!pairsText.trim()) {
-      alert("Digite as duplas");
+      showFlash("Digite as duplas!", "warning");
       return;
     }
 
@@ -72,7 +74,7 @@ const CategoryManager = ({
       .filter((pair) => pair.players.length === 2);
 
     if (newPairs.length === 0) {
-      alert("Nenhuma dupla válida encontrada");
+      showFlash("Nenhuma dupla válida encontrada!", "warning");
       return;
     }
 

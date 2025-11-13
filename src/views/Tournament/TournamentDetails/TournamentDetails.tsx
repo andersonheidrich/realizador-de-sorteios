@@ -3,9 +3,15 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "@/services/api";
 import { useTournament } from "@/hooks/useTournament";
-import { useFlash } from "@/context/FlashContext";
+import { useFlash } from "@/hooks/useFlash";
 import type { Category, Group, Match } from "@/types/types";
-import { CategoryList, CategoryManager, TournamentHeader } from "./components";
+import {
+  CategoryList,
+  CategoryManager,
+  TournamentHeader,
+  TournamentInfoEditor,
+} from "./components";
+import { Modal } from "@/components";
 
 const TournamentDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,7 +28,9 @@ const TournamentDetails = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userId, setUserId] = useState<string | null>(null);
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
+  const [isEditingInfo, setIsEditingInfo] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [originalCategories, setOriginalCategories] = useState<Category[]>([]);
 
   // Permissão para editar (precisa estar logado E ser o dono)
   const canEdit = isLoggedIn && isOwner;
@@ -66,6 +74,7 @@ const TournamentDetails = () => {
   useEffect(() => {
     if (tournament?.categories) {
       setCategories(tournament.categories);
+      setOriginalCategories(JSON.parse(JSON.stringify(tournament.categories)));
     }
   }, [tournament]);
 
@@ -95,6 +104,72 @@ const TournamentDetails = () => {
     setOriginalScores(init);
   }, [tournament]);
 
+  // Função para converter data para ISO
+  const dateToISO = (dateString: string): string => {
+    if (!dateString) return "";
+    const [year, month, day] = dateString.split("-");
+    return new Date(
+      parseInt(year),
+      parseInt(month) - 1,
+      parseInt(day),
+      12,
+      0,
+      0
+    ).toISOString();
+  };
+
+  // Limpar alterações não salvas (restaura do backup)
+  const handleCleanCategories = () => {
+    const confirmed = window.confirm(
+      "Tem certeza que deseja limpar todas as alterações não salvas?"
+    );
+
+    if (confirmed) {
+      setCategories(JSON.parse(JSON.stringify(originalCategories))); // Restaura do backup
+      showFlash("Alterações limpas!", "info");
+    }
+  };
+
+  // Cancelar edição (limpa e volta para visualização)
+  const handleCancelEdit = async () => {
+    const confirmed = window.confirm(
+      "Tem certeza que deseja cancelar? Todas as alterações não salvas serão perdidas."
+    );
+
+    if (confirmed) {
+      setCategories(JSON.parse(JSON.stringify(originalCategories))); // Restaura do backup
+      setIsEditMode(false);
+      showFlash("Edição cancelada", "info");
+    }
+  };
+
+  // Salvar informações básicas do torneio
+  const handleSaveTournamentInfo = async (
+    name: string,
+    startDate: string,
+    endDate?: string
+  ) => {
+    if (!tournament?._id) return;
+
+    try {
+      await api.put(`/tournaments/${tournament._id}`, {
+        name,
+        startDate: dateToISO(startDate),
+        endDate: endDate ? dateToISO(endDate) : undefined,
+        date: dateToISO(startDate), // Compatibilidade
+      });
+
+      showFlash("Informações atualizadas com sucesso!", "success");
+      await fetchTournamentById(tournament._id);
+      setIsEditingInfo(false);
+    } catch (err: any) {
+      showFlash(
+        err.response?.data?.message || "Erro ao atualizar informações",
+        "error"
+      );
+    }
+  };
+
   // Salvar categorias no backend
   const handleSaveCategories = async () => {
     if (!tournament?._id) return;
@@ -106,10 +181,11 @@ const TournamentDetails = () => {
 
       showFlash("Categorias salvas com sucesso!", "success");
       await fetchTournamentById(tournament._id);
-      // setIsEditMode(false);
+      setOriginalCategories(JSON.parse(JSON.stringify(categories)));
+      setIsEditMode(false);
     } catch (err: any) {
       showFlash(
-        err.response?.data?.message || "Erro ao salvar categorias",
+        err.response?.data?.message || "Erro ao salvar categorias!",
         "error"
       );
     }
@@ -239,10 +315,28 @@ const TournamentDetails = () => {
           tournament={tournament}
           canEdit={canEdit}
           isEditMode={isEditMode}
+          isEditingInfo={isEditingInfo}
           setIsEditMode={setIsEditMode}
+          setIsEditingInfo={setIsEditingInfo}
           onSave={handleSaveCategories}
-          onCancel={() => fetchTournamentById(id!)}
+          onClean={handleCleanCategories}
+          onCancel={handleCancelEdit}
         />
+
+        {/* Editor de informações básicas */}
+        <Modal
+          isOpen={isEditingInfo}
+          onClose={() => setIsEditingInfo(false)}
+          title="Editar Informações do Torneio"
+        >
+          <TournamentInfoEditor
+            initialName={tournament.name}
+            initialStartDate={tournament.startDate}
+            initialEndDate={tournament.endDate}
+            onSave={handleSaveTournamentInfo}
+            onCancel={() => setIsEditingInfo(false)}
+          />
+        </Modal>
 
         {/* Modo de Edição - Gerenciar Categorias */}
         {isEditMode && canEdit ? (

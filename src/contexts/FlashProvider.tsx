@@ -1,26 +1,9 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
-
-type FlashType = "success" | "error" | "warning" | "info";
-
-interface FlashMessage {
-  id: string;
-  message: string;
-  type: FlashType;
-}
-
-interface FlashContextType {
-  showFlash: (message: string, type?: FlashType) => void;
-}
-
-const FlashContext = createContext<FlashContextType | undefined>(undefined);
-
-export const useFlash = () => {
-  const context = useContext(FlashContext);
-  if (!context) {
-    throw new Error("useFlash deve ser usado dentro de FlashProvider");
-  }
-  return context;
-};
+import React, { useCallback, useState } from "react";
+import {
+  FlashContext,
+  type FlashMessage,
+  type FlashType,
+} from "./FlashContext";
 
 export const FlashProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

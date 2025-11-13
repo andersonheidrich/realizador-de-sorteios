@@ -1,5 +1,5 @@
-import { FlashProvider } from "./context/FlashContext";
-import { UserProvider } from "./context/UserContext";
+import { FlashProvider } from "./contexts/FlashProvider";
+import { UserProvider } from "./contexts/UserContext";
 import AppRoutes from "./routes";
 
 const App = () => {
