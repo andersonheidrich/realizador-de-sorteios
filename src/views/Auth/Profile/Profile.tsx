@@ -76,55 +76,62 @@ const Profile = () => {
     if (token) fetchProfileData();
   }, [token]);
 
-  if (loading) return <p className="text-center mt-8">Carregando...</p>;
   if (error) return <p className="text-center text-red-500 mt-8">{error}</p>;
 
   return (
     <section>
       <div className="flex flex-col w-full min-h-screen items-center pt-22 px-5 bg-white">
-        <div className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold">
+        <h1 className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold">
           Perfil
+        </h1>
+        <div className="flex flex-col w-full max-h-164 items-center">
+          {loading ? (
+            <p className="py-4">Carregando...</p>
+          ) : (
+            <>
+              {(user.image || preview) && (
+                <RoundedImage
+                  src={
+                    preview
+                      ? URL.createObjectURL(preview)
+                      : `${API_URL}/images/users/${user.image}`
+                  }
+                  alt={user.name}
+                  size="large"
+                />
+              )}
+              <form onSubmit={handleSubmit} className="w-75 sm:w-100">
+                <Input
+                  text="Imagem"
+                  type="file"
+                  name="image"
+                  handleOnChange={onFileChange}
+                />
+                <Input
+                  text="Nome"
+                  type="text"
+                  name="name"
+                  placeholder="Digite o seu nome"
+                  handleOnChange={handleChange}
+                  value={user.name || ""}
+                />
+                <Input
+                  text="E-mail"
+                  type="email"
+                  name="email"
+                  placeholder="Digite o seu e-mail"
+                  handleOnChange={handleChange}
+                  value={user.email || ""}
+                />
+                <input
+                  type="submit"
+                  value="Salvar"
+                  className="w-full rounded-lg border-none min-w-25 min-h-10 shadow text-white bg-green-600 hover:bg-green-500 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
+                />
+              </form>
+            </>
+          )}
         </div>
-        {(user.image || preview) && (
-          <RoundedImage
-            src={
-              preview
-                ? URL.createObjectURL(preview)
-                : `${API_URL}/images/users/${user.image}`
-            }
-            alt={user.name}
-            size="large"
-          />
-        )}
-        <form onSubmit={handleSubmit} className="w-75 sm:w-100">
-          <Input
-            text="Imagem"
-            type="file"
-            name="image"
-            handleOnChange={onFileChange}
-          />
-          <Input
-            text="Nome"
-            type="text"
-            name="name"
-            placeholder="Digite o seu nome"
-            handleOnChange={handleChange}
-            value={user.name || ""}
-          />
-          <Input
-            text="E-mail"
-            type="email"
-            name="email"
-            placeholder="Digite o seu e-mail"
-            handleOnChange={handleChange}
-            value={user.email || ""}
-          />
-          <input
-            type="submit"
-            value="Salvar"
-            className="w-full rounded-lg border-none min-w-25 min-h-10 shadow text-white bg-green-600 hover:bg-green-500 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
-          />
-        </form>
       </div>
     </section>
   );

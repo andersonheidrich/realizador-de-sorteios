@@ -55,9 +55,9 @@ const TournamentList = () => {
   return (
     <section>
       <div className="flex flex-col w-full min-h-screen items-center pt-22 px-5 bg-white">
-        <div className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold">
+        <h1 className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold">
           Meus Torneios
-        </div>
+        </h1>
         <div className="flex flex-col w-full sm:w-150 max-h-164 justify-start items-center p-4 shadow shadow-gray-400 rounded-2xl text-sm sm:text-base">
           <Filter sortBy={sortBy} onSortChange={setSortBy} />
           {loading ? (
