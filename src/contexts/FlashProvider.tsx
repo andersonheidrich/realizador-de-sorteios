@@ -53,7 +53,7 @@ export const FlashProvider: React.FC<{ children: React.ReactNode }> = ({
                 <span className="font-medium">{flash.message}</span>
                 <button
                   onClick={() => removeFlash(flash.id)}
-                  className="ml-4 text-white hover:text-gray-200 font-bold text-xl cursor-pointer"
+                  className="ml-4 text-white hover:text-gray-200 font-bold text-xl cursor-pointer transition-colors duration-300"
                 >
                   x
                 </button>

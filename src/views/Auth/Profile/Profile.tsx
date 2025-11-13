@@ -82,14 +82,15 @@ const Profile = () => {
   return (
     <section>
       <div className="flex flex-col w-full min-h-screen items-center pt-22 px-5 bg-white">
-        <div className="mt-8 mb-4 text-3xl font-bold">Perfil</div>
+        <div className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold">
+          Perfil
+        </div>
         {(user.image || preview) && (
           <RoundedImage
             src={
               preview
                 ? URL.createObjectURL(preview)
-                : // : `http://localhost:5000/images/users/${user.image}`
-                  `${API_URL}/images/users/${user.image}`
+                : `${API_URL}/images/users/${user.image}`
             }
             alt={user.name}
             size="large"
@@ -118,24 +119,10 @@ const Profile = () => {
             handleOnChange={handleChange}
             value={user.email || ""}
           />
-          {/* <Input
-            text="Senha"
-            type="password"
-            name="password"
-            placeholder="Digite a sua senha"
-            handleOnChange={handleChange}
-          />
-          <Input
-            text="Confirmação de Senha"
-            type="password"
-            name="confirm_password"
-            placeholder="Confirme a sua senha"
-            handleOnChange={handleChange}
-          /> */}
           <input
             type="submit"
             value="Salvar"
-            className="w-full rounded-lg border-none min-w-25 min-h-[2.5rem] shadow text-white bg-green-600 hover:bg-green-500 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
+            className="w-full rounded-lg border-none min-w-25 min-h-10 shadow text-white bg-green-600 hover:bg-green-500 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
           />
         </form>
       </div>

@@ -25,7 +25,9 @@ const TournamentHeader = ({
 }: Props) => {
   return (
     <header className="flex flex-col items-center">
-      <h1 className="mt-8 mb-4 text-3xl font-bold">{tournament.name}</h1>
+      <h1 className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold">
+        {tournament.name}
+      </h1>
       <p className="mb-4 sm:text-xl">
         <span className="font-medium">
           Início: {new Date(tournament.startDate).toLocaleDateString("pt-BR")}
@@ -42,7 +44,7 @@ const TournamentHeader = ({
           <div>
             <button
               onClick={() => setIsEditingInfo(true)}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer transition-colors duration-300"
               title="Editar informações do torneio"
             >
               Editar Informações
@@ -55,7 +57,7 @@ const TournamentHeader = ({
             {!isEditMode ? (
               <button
                 onClick={() => setIsEditMode(true)}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer transition-colors duration-300"
                 title="Gerenciar categorias do torneio"
               >
                 Gerenciar Categorias
@@ -64,21 +66,21 @@ const TournamentHeader = ({
               <>
                 <button
                   onClick={onSave}
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 cursor-pointer"
+                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 cursor-pointer transition-colors duration-300"
                   title="Salvar categorias"
                 >
                   Salvar Categorias
                 </button>
                 <button
                   onClick={onClean}
-                  className="px-6 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 cursor-pointer"
+                  className="px-6 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 cursor-pointer transition-colors duration-300"
                   title="Limpar"
                 >
                   Limpar
                 </button>
                 <button
                   onClick={onCancel}
-                  className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 cursor-pointer"
+                  className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 cursor-pointer transition-colors duration-300"
                   title="Cancelar"
                 >
                   Cancelar
