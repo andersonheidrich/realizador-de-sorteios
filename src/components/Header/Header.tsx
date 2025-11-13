@@ -17,9 +17,9 @@ const Header = () => {
       label: "Início",
       path: "/",
       icon: <HomeIcon />,
-      activeClasses: "bg-gray-600 text-white border-b-gray-600",
+      activeClasses: "bg-gray-400 text-white border-b-gray-400",
       baseClasses:
-        "border-b-gray-600 hover:bg-gray-600 hover:text-white transition-colors duration-300",
+        "border-b-gray-400 hover:bg-gray-400 hover:text-white transition-colors duration-300",
     },
     {
       label: "Novo Torneio",

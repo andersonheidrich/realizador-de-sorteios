@@ -46,7 +46,7 @@ const CategoryList = ({
       {canEdit && categories.some((cat) => cat.isDrawn) && (
         <button
           onClick={onUpdateScores}
-          className="mt-8 px-6 py-3 rounded-lg transition-colors bg-blue-600 text-white hover:bg-blue-700 cursor-pointer"
+          className="mt-8 px-6 py-3 rounded-lg transition-colors duration-300 bg-blue-600 text-white hover:bg-blue-700 cursor-pointer"
         >
           Atualizar Classificação
         </button>

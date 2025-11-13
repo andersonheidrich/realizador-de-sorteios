@@ -9,7 +9,7 @@ const Filter = ({
 
   return (
     <div className="w-full p-4 bg-gray-50 rounded-lg">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex max-[425px]:flex-col items-center max-[425px]:items-start justify-between gap-4">
         {/* Filtros por Data */}
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-600">Data:</span>
@@ -18,7 +18,7 @@ const Filter = ({
             className={`p-2 rounded-md transition-all cursor-pointer ${
               isActive("date-asc")
                 ? "bg-blue-500 text-white"
-                : "bg-white text-gray-600 hover:bg-blue-100"
+                : "bg-white text-gray-600 hover:bg-blue-100 transition-colors duration-300"
             }`}
             title="Data mais recente primeiro"
           >
@@ -29,7 +29,7 @@ const Filter = ({
             className={`p-2 rounded-md transition-all cursor-pointer ${
               isActive("date-desc")
                 ? "bg-blue-500 text-white"
-                : "bg-white text-gray-600 hover:bg-blue-100"
+                : "bg-white text-gray-600 hover:bg-blue-100 transition-colors duration-300"
             }`}
             title="Data mais recente por último"
           >
@@ -45,7 +45,7 @@ const Filter = ({
             className={`px-3 py-2 rounded-md transition-all flex items-center gap-1 cursor-pointer ${
               isActive("name-asc")
                 ? "bg-blue-500 text-white"
-                : "bg-white text-gray-600 hover:bg-blue-100"
+                : "bg-white text-gray-600 hover:bg-blue-100 transition-colors duration-300"
             }`}
             title="A-Z"
           >
@@ -57,7 +57,7 @@ const Filter = ({
             className={`px-3 py-2 rounded-md transition-all flex items-center gap-1 cursor-pointer ${
               isActive("name-desc")
                 ? "bg-blue-500 text-white"
-                : "bg-white text-gray-600 hover:bg-blue-100"
+                : "bg-white text-gray-600 hover:bg-blue-100 transition-colors duration-300"
             }`}
             title="Z-A"
           >

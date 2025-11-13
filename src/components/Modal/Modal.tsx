@@ -39,7 +39,7 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
           <h2 className="text-2xl font-bold">{title}</h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-300 cursor-pointer"
             title="Fechar"
           >
             <X size={24} />

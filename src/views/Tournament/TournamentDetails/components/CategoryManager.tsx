@@ -128,7 +128,7 @@ const CategoryManager = ({
           />
           <button
             onClick={handleAddCategory}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2 cursor-pointer"
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2 cursor-pointer transition-colors duration-300"
           >
             <Plus size={18} />
             Adicionar
@@ -154,7 +154,7 @@ const CategoryManager = ({
                 </h3>
                 <button
                   onClick={() => handleRemoveCategory(catId!)}
-                  className="p-2 text-red-600 hover:bg-red-50 rounded cursor-pointer"
+                  className="p-2 text-red-600 hover:bg-red-50 rounded cursor-pointer transition-colors duration-300"
                   title="Remover categoria"
                 >
                   <Trash2 size={18} />
@@ -179,7 +179,7 @@ const CategoryManager = ({
                         </span>
                         <button
                           onClick={() => handleRemovePair(catId!, index)}
-                          className="text-red-600 hover:text-red-800 cursor-pointer"
+                          className="text-red-600 hover:text-red-800 cursor-pointer transition-colors duration-300"
                           title="Remover dupla"
                         >
                           <Trash2 size={14} />
@@ -197,7 +197,7 @@ const CategoryManager = ({
                   className={`flex-1 px-4 py-2 rounded-lg flex items-center justify-center gap-2 cursor-pointer ${
                     selectedCategory === catId
                       ? "bg-blue-600 text-white"
-                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors duration-300"
                   }`}
                 >
                   <Users size={16} />
@@ -211,7 +211,7 @@ const CategoryManager = ({
                     className={`flex-1 px-4 py-2 rounded-lg cursor-pointer ${
                       category.isDrawn
                         ? "bg-green-600 text-white cursor-not-allowed"
-                        : "bg-green-600 text-white hover:bg-green-700"
+                        : "bg-green-600 text-white hover:bg-green-700 transition-colors duration-300"
                     }`}
                   >
                     {category.isDrawn ? "✓ Sorteado" : "Sortear"}
@@ -242,7 +242,7 @@ const CategoryManager = ({
           <div className="flex gap-3">
             <button
               onClick={handleAddPairs}
-              className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 cursor-pointer"
+              className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 cursor-pointer transition-colors duration-300"
             >
               Adicionar Duplas
             </button>
@@ -251,7 +251,7 @@ const CategoryManager = ({
                 setSelectedCategory(null);
                 setPairsText("");
               }}
-              className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 cursor-pointer"
+              className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 cursor-pointer transition-colors duration-300"
             >
               Cancelar
             </button>

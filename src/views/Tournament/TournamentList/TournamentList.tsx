@@ -55,7 +55,9 @@ const TournamentList = () => {
   return (
     <section>
       <div className="flex flex-col w-full min-h-screen items-center pt-22 px-5 bg-white">
-        <div className="mt-8 mb-4 text-3xl font-bold">Meus Torneios</div>
+        <div className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold">
+          Meus Torneios
+        </div>
         <div className="flex flex-col w-full sm:w-150 max-h-164 justify-start items-center p-4 shadow shadow-gray-400 rounded-2xl text-sm sm:text-base">
           <Filter sortBy={sortBy} onSortChange={setSortBy} />
           {loading ? (
@@ -72,7 +74,7 @@ const TournamentList = () => {
                   className="flex w-full items-center gap-2"
                 >
                   <Link
-                    className="w-full my-2 bg-yellow-500 hover:bg-yellow-400 rounded-2xl"
+                    className="w-full my-2 bg-yellow-500 hover:bg-yellow-400 rounded-2xl transition-colors duration-300"
                     to={`/tournaments/${tournament._id}`}
                   >
                     <li className="flex flex-col w-full items-start px-4 py-2 gap-1 font-bold">
@@ -100,7 +102,7 @@ const TournamentList = () => {
                     onClick={(e) =>
                       handleDelete(e, tournament._id!, tournament.name)
                     }
-                    className="flex items-center justify-center w-10 h-10 p-2 cursor-pointer rounded-full hover:bg-red-100 transition-colors"
+                    className="flex items-center justify-center w-10 h-10 p-2 cursor-pointer rounded-full hover:bg-red-100 transition-colors duration-300"
                     title="Excluir torneio"
                   >
                     <Trash2 />

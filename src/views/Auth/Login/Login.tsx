@@ -32,7 +32,9 @@ const Login = () => {
   return (
     <section>
       <div className="flex flex-col w-full min-h-screen items-center pt-22 px-5 bg-white">
-        <div className="mt-8 text-3xl font-bold">Entrar</div>
+        <div className="mt-8 text-3xl max-[425px]:text-[22px] font-bold">
+          Entrar
+        </div>
         <form onSubmit={handleSubmit} className="w-75 sm:w-100">
           <Input
             text="E-mail"
