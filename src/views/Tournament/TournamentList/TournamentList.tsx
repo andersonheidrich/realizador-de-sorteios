@@ -71,7 +71,7 @@ const TournamentList = () => {
               {filteredTournaments.map((tournament) => (
                 <div
                   key={tournament._id}
-                  className="flex w-full items-center gap-2"
+                  className="flex w-full items-center gap-1 sm:gap-2"
                 >
                   <Link
                     className="w-full my-2 bg-yellow-500 hover:bg-yellow-400 rounded-2xl transition-colors duration-300"
@@ -102,7 +102,7 @@ const TournamentList = () => {
                     onClick={(e) =>
                       handleDelete(e, tournament._id!, tournament.name)
                     }
-                    className="flex items-center justify-center w-10 h-10 p-2 cursor-pointer rounded-full hover:bg-red-100 transition-colors duration-300"
+                    className="flex items-center justify-center w-9 h-9 p-2 sm:w-10 sm:h-10 sm:p-1 cursor-pointer rounded-full hover:bg-red-100 transition-colors duration-300"
                     title="Excluir torneio"
                   >
                     <Trash2 />

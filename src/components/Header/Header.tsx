@@ -95,7 +95,7 @@ const Header = () => {
           return (
             <div
               key={item.path}
-              className={`flex flex-col min-w-16 w-32 justify-center items-center text-center cursor-pointer border-b-4 text-sm sm:text-base ${
+              className={`flex flex-col min-w-16 w-32 justify-center items-center text-center cursor-pointer border-b-4 text-xs min-[375px]:text-sm sm:text-base ${
                 isActive ? item.activeClasses : item.baseClasses
               }`}
               aria-label={item.label}

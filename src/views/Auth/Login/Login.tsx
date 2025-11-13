@@ -35,7 +35,7 @@ const Login = () => {
         <div className="mt-8 text-3xl max-[425px]:text-[22px] font-bold">
           Entrar
         </div>
-        <form onSubmit={handleSubmit} className="w-75 sm:w-100">
+        <form onSubmit={handleSubmit} className="w-70 sm:w-100">
           <Input
             text="E-mail"
             type="email"

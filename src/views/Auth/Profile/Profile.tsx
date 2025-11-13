@@ -100,7 +100,7 @@ const Profile = () => {
                   size="large"
                 />
               )}
-              <form onSubmit={handleSubmit} className="w-75 sm:w-100">
+              <form onSubmit={handleSubmit} className="w-70 sm:w-100">
                 <Input
                   text="Imagem"
                   type="file"
