@@ -27,6 +27,7 @@ const Login = () => {
     }
 
     login(user);
+    showFlash(`Login efetuado com sucesso!`, "success");
   };
 
   return (

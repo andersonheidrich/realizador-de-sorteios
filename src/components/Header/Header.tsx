@@ -1,11 +1,14 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "@/contexts/useUser";
-import HomeIcon from "@mui/icons-material/Home";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import LoginIcon from "@mui/icons-material/Login";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import LogoutIcon from "@mui/icons-material/Logout";
-import PersonIcon from "@mui/icons-material/Person";
+import {
+  Dices,
+  House,
+  LogIn,
+  LogOut,
+  Trophy,
+  User,
+  UserPlus,
+} from "lucide-react";
 
 const Header = () => {
   const { authenticated, logout } = useUser();
@@ -16,7 +19,7 @@ const Header = () => {
     {
       label: "Início",
       path: "/",
-      icon: <HomeIcon />,
+      icon: <House />,
       activeClasses: "bg-gray-400 text-white border-b-gray-400",
       baseClasses:
         "border-b-gray-400 hover:bg-gray-400 hover:text-white transition-colors duration-300",
@@ -24,7 +27,7 @@ const Header = () => {
     {
       label: "Novo Torneio",
       path: "/new-tournament",
-      icon: <EmojiEventsIcon />,
+      icon: <Dices />,
       activeClasses: "bg-violet-600 text-white border-b-violet-600",
       baseClasses:
         "border-b-violet-600 hover:bg-violet-600 hover:text-white transition-colors duration-300",
@@ -32,7 +35,7 @@ const Header = () => {
     {
       label: "Meus Torneios",
       path: "/my-tournaments",
-      icon: <EmojiEventsIcon />,
+      icon: <Trophy />,
       activeClasses: "bg-yellow-500 text-white border-b-yellow-500",
       baseClasses:
         "border-b-yellow-500 hover:bg-yellow-500 hover:text-white transition-colors duration-300",
@@ -40,7 +43,7 @@ const Header = () => {
     {
       label: "Entrar",
       path: "/login",
-      icon: <LoginIcon />,
+      icon: <LogIn />,
       activeClasses: "bg-green-600 text-white border-b-green-600",
       baseClasses:
         "border-b-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300",
@@ -48,7 +51,7 @@ const Header = () => {
     {
       label: "Cadastrar",
       path: "/register",
-      icon: <PersonAddIcon />,
+      icon: <UserPlus />,
       activeClasses: "bg-blue-600 text-white border-b-blue-600",
       baseClasses:
         "border-b-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300",
@@ -56,7 +59,7 @@ const Header = () => {
     {
       label: "Perfil",
       path: "/profile",
-      icon: <PersonIcon />,
+      icon: <User />,
       activeClasses: "bg-green-600 text-white border-b-green-600",
       baseClasses:
         "border-b-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300",
@@ -64,7 +67,7 @@ const Header = () => {
     {
       label: "Sair",
       path: "/logout",
-      icon: <LogoutIcon />,
+      icon: <LogOut />,
       activeClasses: "bg-red-600 text-white border-b-red-600",
       baseClasses:
         "border-b-red-600 hover:bg-red-600 hover:text-white transition-colors duration-300",

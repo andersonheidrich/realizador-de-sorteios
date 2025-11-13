@@ -57,6 +57,8 @@ const Register = () => {
     } catch (error) {
       console.error("Erro ao registrar usuário:", error);
     }
+
+    showFlash("Cadastro realizado com sucesso!", "success");
   };
 
   return (

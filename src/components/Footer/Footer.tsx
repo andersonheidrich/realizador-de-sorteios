@@ -1,6 +1,5 @@
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import EmailIcon from "@mui/icons-material/Email";
+import { Mail } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -13,7 +12,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <LinkedInIcon
+            <FaLinkedin
               style={{ width: "64px", height: "64px", cursor: "pointer" }}
             />
           </a>
@@ -24,13 +23,13 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <GitHubIcon
+            <FaGithub
               style={{ width: "64px", height: "64px", cursor: "pointer" }}
             />
           </a>
         </div>
         <div className="flex flex-col items-center w-60">
-          <EmailIcon style={{ width: "64px", height: "64px" }} />
+          <Mail style={{ width: "64px", height: "64px" }} />
           <span>andersonheidrichleite@gmail.com</span>
         </div>
       </div>
