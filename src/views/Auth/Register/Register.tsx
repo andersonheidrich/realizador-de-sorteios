@@ -1,9 +1,9 @@
 import React from "react";
 import { Input } from "@/components";
-import { useUser } from "@/context/useUser";
-import { useFlash } from "@/context/FlashContext";
+import { useUser } from "@/contexts/useUser";
 import type { UserRegister } from "@/types/types";
 import { useForm } from "@/hooks/useForm";
+import { useFlash } from "@/hooks/useFlash";
 
 const Register = () => {
   const { userRegister } = useUser();
@@ -95,7 +95,7 @@ const Register = () => {
           <input
             type="submit"
             value="Cadastrar"
-            className="w-full rounded-lg border-none min-w-25 min-h-[2.5rem] shadow text-white bg-blue-600 hover:bg-blue-500 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
+            className="w-full rounded-lg border-none min-w-25 min-h-10 shadow text-white bg-blue-600 hover:bg-blue-500 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
           />
         </form>
       </div>

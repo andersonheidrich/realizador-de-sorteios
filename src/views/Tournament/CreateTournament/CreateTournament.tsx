@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTournament } from "@/hooks/useTournament";
-import { useFlash } from "@/context/FlashContext";
+import { useFlash } from "@/hooks/useFlash";
 import { Input } from "@/components";
 
 const CreateTournament = () => {

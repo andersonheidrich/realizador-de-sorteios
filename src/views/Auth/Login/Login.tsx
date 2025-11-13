@@ -1,8 +1,8 @@
 import { Input } from "@/components";
-import { useUser } from "@/context/useUser";
-import { useFlash } from "@/context/FlashContext";
+import { useUser } from "@/contexts/useUser";
 import type { UserLogin } from "@/types/types";
 import { useForm } from "@/hooks/useForm";
+import { useFlash } from "@/hooks/useFlash";
 
 const Login = () => {
   const { login } = useUser();
@@ -51,7 +51,7 @@ const Login = () => {
           <input
             type="submit"
             value="Entrar"
-            className="w-full rounded-lg border-none min-w-25 min-h-[2.5rem] shadow text-white bg-green-600 hover:bg-green-500 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
+            className="w-full rounded-lg border-none min-w-25 min-h-10 shadow text-white bg-green-600 hover:bg-green-500 cursor-pointer font-bold text-[1.1em] transition-colors duration-300"
           />
         </form>
       </div>

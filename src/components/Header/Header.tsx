@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useUser } from "@/context/useUser";
+import { useUser } from "@/contexts/useUser";
 import HomeIcon from "@mui/icons-material/Home";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import LoginIcon from "@mui/icons-material/Login";
@@ -88,7 +88,7 @@ const Header = () => {
   };
 
   return (
-    <header className="flex w-full h-23 justify-center items-center fixed z-[1000] bg-white border-b-[4px] border-b-gray-300 font-bold gap-2">
+    <header className="flex w-full h-23 justify-center items-center fixed z-1000 bg-white border-b-4 border-b-gray-300 font-bold gap-2">
       <nav className="flex w-full h-24 justify-center">
         {menuItems.map((item) => {
           const isActive = location.pathname === item.path;

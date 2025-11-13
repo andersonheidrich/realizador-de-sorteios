@@ -4,8 +4,11 @@ interface Props {
   tournament: Tournament;
   canEdit: boolean;
   isEditMode: boolean;
+  isEditingInfo: boolean;
   setIsEditMode: (v: boolean) => void;
+  setIsEditingInfo: (v: boolean) => void;
   onSave: () => void;
+  onClean: () => void;
   onCancel: () => void;
 }
 
@@ -13,8 +16,11 @@ const TournamentHeader = ({
   tournament,
   canEdit,
   isEditMode,
+  isEditingInfo,
   setIsEditMode,
+  setIsEditingInfo,
   onSave,
+  onClean,
   onCancel,
 }: Props) => {
   return (
@@ -31,33 +37,57 @@ const TournamentHeader = ({
         </span>
       </p>
 
-      {canEdit && (
-        <div className="mb-6 flex gap-3">
-          {!isEditMode ? (
+      <div className="flex mb-6 gap-4">
+        {canEdit && !isEditMode && !isEditingInfo && (
+          <div>
             <button
-              onClick={() => setIsEditMode(true)}
+              onClick={() => setIsEditingInfo(true)}
               className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
+              title="Editar informações do torneio"
             >
-              Gerenciar Categorias
+              Editar Informações
             </button>
-          ) : (
-            <>
+          </div>
+        )}
+
+        {canEdit && (
+          <div className="flex gap-3">
+            {!isEditMode ? (
               <button
-                onClick={onSave}
-                className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 cursor-pointer"
+                onClick={() => setIsEditMode(true)}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
+                title="Gerenciar categorias do torneio"
               >
-                Salvar Categorias
+                Gerenciar Categorias
               </button>
-              <button
-                onClick={onCancel}
-                className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 cursor-pointer"
-              >
-                Cancelar
-              </button>
-            </>
-          )}
-        </div>
-      )}
+            ) : (
+              <>
+                <button
+                  onClick={onSave}
+                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 cursor-pointer"
+                  title="Salvar categorias"
+                >
+                  Salvar Categorias
+                </button>
+                <button
+                  onClick={onClean}
+                  className="px-6 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 cursor-pointer"
+                  title="Limpar"
+                >
+                  Limpar
+                </button>
+                <button
+                  onClick={onCancel}
+                  className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 cursor-pointer"
+                  title="Cancelar"
+                >
+                  Cancelar
+                </button>
+              </>
+            )}
+          </div>
+        )}
+      </div>
     </header>
   );
 };
