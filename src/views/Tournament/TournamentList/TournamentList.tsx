@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import type { AxiosError } from "axios";
 import { useTournament } from "@/hooks/useTournament";
 import { useTournamentFilter } from "@/hooks/useTournamentFilter";
 import { useFlash } from "@/hooks/useFlash";
@@ -9,13 +9,18 @@ import { Filter } from "@/components";
 import { Trash2 } from "lucide-react";
 
 const TournamentList = () => {
-  const { tournaments, fetchTournaments, deleteTournament, loading } =
+  const { tournaments, fetchTournamentsByUser, deleteTournament, loading } =
     useTournament();
   const { showFlash } = useFlash();
   const { sortBy, setSortBy, filteredTournaments } =
     useTournamentFilter(tournaments);
 
+  const effectRan = useRef(false);
+
   useEffect(() => {
+    if (effectRan.current) return; // impede a segunda execução do StrictMode
+    effectRan.current = true;
+
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -23,7 +28,7 @@ const TournamentList = () => {
       return;
     }
 
-    fetchTournaments();
+    fetchTournamentsByUser();
   }, []);
 
   const handleDelete = async (
@@ -43,10 +48,12 @@ const TournamentList = () => {
     try {
       await deleteTournament(tournamentId);
       showFlash("Torneio excluído com sucesso!", "success");
-      await fetchTournaments(); // Recarrega a lista
-    } catch (error: any) {
+      await fetchTournamentsByUser(); // Recarrega a lista
+    } catch (error: unknown) {
+      const err = error as AxiosError<{ message: string }>;
+
       showFlash(
-        error.response?.data?.message || "Erro ao excluir torneio!",
+        err.response?.data?.message || "Erro ao excluir torneio!",
         "error"
       );
     }
@@ -63,9 +70,17 @@ const TournamentList = () => {
           {loading ? (
             <p className="py-4">Carregando...</p>
           ) : filteredTournaments.length === 0 ? (
-            <p className="text-center text-gray-500 py-4">
-              Nenhum torneio encontrado.
-            </p>
+            <div className="text-center text-white">
+              <p className="text-gray-500 py-4">
+                Você ainda não criou um torneio.
+              </p>
+              <Link
+                to="/new-tournament"
+                className="p-2 justify-center bg-blue-600 hover:bg-blue-700 font-bold rounded-lg cursor-pointer transition-colors duration-300"
+              >
+                Criar Torneio
+              </Link>
+            </div>
           ) : (
             <ul className="w-full justify-center items-center overflow-y-auto overflow-x-hidden py-4">
               {filteredTournaments.map((tournament) => (
