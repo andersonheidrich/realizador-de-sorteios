@@ -88,17 +88,17 @@ const TournamentInfoEditor = ({
         />
         <div className="flex gap-3 mt-2">
           <button
+            type="submit"
+            className="flex-1 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 cursor-pointer transition-colors duration-300 font-medium"
+          >
+            Salvar Alterações
+          </button>
+          <button
             type="button"
             onClick={onCancel}
             className="flex-1 px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 cursor-pointer transition-colors duration-300 font-medium"
           >
             Cancelar
-          </button>
-          <button
-            type="submit"
-            className="flex-1 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 cursor-pointer transition-colors duration-300 font-medium"
-          >
-            Salvar Alterações
           </button>
         </div>
       </form>
