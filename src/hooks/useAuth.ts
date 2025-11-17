@@ -6,14 +6,25 @@ import type { AuthResponse, UserRegister } from "@/types/types";
 
 export const useAuth = () => {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [userId, setUserId] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const storedUserId = localStorage.getItem("userId");
 
     if (token) {
       api.defaults.headers.Authorization = `Bearer ${token}`;
       setAuthenticated(true);
+
+      if (storedUserId) {
+        setIsLoggedIn(true);
+        setUserId(storedUserId);
+      }
+    } else {
+      setAuthenticated(false);
+      setIsLoggedIn(false);
     }
   }, []);
 
@@ -29,6 +40,8 @@ export const useAuth = () => {
       if (data.user && (data.user._id || data.user.id)) {
         const userId = data.user._id || data.user.id;
         localStorage.setItem("userId", userId);
+        setUserId(userId);
+        setIsLoggedIn(true);
       } else {
         console.error("Usuário não possui ID na resposta:", data.message);
       }
@@ -69,11 +82,14 @@ export const useAuth = () => {
 
   const logout = (): void => {
     setAuthenticated(false);
+    setIsLoggedIn(false);
+    setUserId(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     delete api.defaults.headers.Authorization;
 
     navigate("/");
   };
 
-  return { authenticated, userRegister, login, logout };
+  return { authenticated, isLoggedIn, userId, userRegister, login, logout };
 };

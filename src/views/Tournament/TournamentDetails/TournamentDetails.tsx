@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import { useTournament } from "@/hooks/useTournament";
-import { useTournamentAuth } from "@/hooks/useTournamentAuth";
 import { useTournamentOwnership } from "@/hooks/useTournamentOwnership";
 import { useTournamentCategories } from "@/hooks/useTournamentCategories";
 import { useTournamentScores } from "@/hooks/useTournamentScores";
@@ -17,8 +17,8 @@ import { Modal } from "@/components";
 
 const TournamentDetails = () => {
   const { id } = useParams<{ id: string }>();
+  const { isLoggedIn, userId } = useAuth();
   const { tournament, fetchTournamentById, loading } = useTournament();
-  const { isLoggedIn, userId } = useTournamentAuth();
   const { isOwner, canEdit } = useTournamentOwnership(
     tournament,
     userId,
