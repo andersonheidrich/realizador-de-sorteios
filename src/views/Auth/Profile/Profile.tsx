@@ -81,7 +81,7 @@ const Profile = () => {
   return (
     <section>
       <div className="flex flex-col w-full min-h-screen items-center pt-22 px-5 bg-white">
-        <h1 className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold">
+        <h1 className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold select-none">
           Perfil
         </h1>
         <div className="flex flex-col w-full max-h-164 items-center">

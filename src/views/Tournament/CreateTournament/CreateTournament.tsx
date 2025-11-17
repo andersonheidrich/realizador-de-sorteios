@@ -81,7 +81,7 @@ const CreateTournament = () => {
 
   return (
     <div className="flex flex-col min-h-screen items-center pt-22 px-5 bg-white">
-      <h1 className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold">
+      <h1 className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold select-none">
         Novo Torneio
       </h1>
       <div className="flex flex-col w-full sm:w-150 p-4 rounded-2xl shadow shadow-gray-400">

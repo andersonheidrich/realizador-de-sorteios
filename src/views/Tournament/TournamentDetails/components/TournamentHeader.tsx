@@ -25,7 +25,7 @@ const TournamentHeader = ({
 }: Props) => {
   return (
     <header className="flex flex-col items-center">
-      <h1 className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold">
+      <h1 className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold select-none">
         {tournament.name}
       </h1>
       <p className="mb-4 sm:text-xl">

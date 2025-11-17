@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <section>
       <div className="flex flex-col w-full min-h-screen items-center pt-22 px-5 bg-white">
-        <h1 className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold">
+        <h1 className="mt-8 mb-4 text-3xl max-[425px]:text-[22px] font-bold select-none">
           Gerenciador de Torneios
         </h1>
         <div className="flex flex-col w-full sm:w-150 max-h-164 justify-start items-center p-4 shadow shadow-gray-400 rounded-2xl text-sm sm:text-base">
@@ -30,7 +30,7 @@ const Home = () => {
               Nenhum torneio encontrado.
             </p>
           ) : (
-            <ul className="w-full justify-start items-center overflow-y-auto overflow-x-hidden py-4">
+            <ul className="w-full justify-start items-center overflow-y-auto overflow-x-hidden py-4 select-none">
               {filteredTournaments.map((tournament) => (
                 <Link
                   className="my-2 bg-gray-400 hover:bg-gray-500 rounded-2xl transition-colors duration-300"
